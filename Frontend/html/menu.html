@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Menu</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/menu.css">
+</head>
+<body>
+<div class="container">
+    <h1>Main Menu</h1>
+    <div class="menu-options">
+        <button class="menu-btn" id="play-btn">Play</button>
+        <button class="menu-btn" id="leaderboard-btn">Leaderboard</button>
+        <button class="menu-btn" id="settings-btn">Settings</button>
+        <button class="menu-btn" id="about-btn">About</button>
+        <button class="menu-btn exit-btn" id="exit-btn">Exit</button>
+    </div>
+</div>
+
+<script>
+    const playBtn = document.getElementById('play-btn');
+    const leaderboardBtn = document.getElementById('leaderboard-btn');
+    const settingsBtn = document.getElementById('settings-btn');
+    const aboutBtn = document.getElementById('about-btn');
+    const exitBtn = document.getElementById('exit-btn');
+
+    playBtn.addEventListener('click', () => {
+      window.location.href = 'game.html';
+    });
+
+
+    leaderboardBtn.addEventListener('click', () => {
+      window.location.href = 'leaderboard.html';
+    });
+
+
+    settingsBtn.addEventListener('click', () => {
+      window.location.href = 'settings.html';
+    });
+
+
+    aboutBtn.addEventListener('click', () => {
+      window.location.href = 'about.html';
+    });
+
+
+    exitBtn.addEventListener('click', () => {
+      window.location.href = 'exit.html';
+    });
+</script>
+</body>
+</html>
