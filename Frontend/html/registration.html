@@ -3,46 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Page</title>
+    <title>Login Page</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="registration.css">
 </head>
 <body>
 <div class="container">
-    <div class="sign-in">
-        <h1>Ready to Fly?</h1>
-        <p>Sign In and start your adventure!</p>
-        <form>
-            <input type="text" placeholder="Enter your username" required>
-            <div class="password-field">
-                <input type="password" id="password" placeholder="Enter your password" required>
-                <span class="toggle-password" onclick="togglePassword()">
-            <i class="fas fa-eye-slash"></i>
-          </span>
-            </div>
-            <a href="#" class="forgot-password">Forgot your password?</a>
-            <button class="sign-in-btn" type="submit">Sign In</button>
-        </form>
-    </div>
-
     <div class="sign-up">
-        <h1>Join the Fun!</h1>
-        <p>Create an account to track your progress and play anytime & anywhere!</p>
-        <button class="sign-up-btn" id="sign-up-btn">
+        <h1>Back to Fly?</h1>
+        <p>Get back in the game with the chance to claim the top spot on the leaderboard!</p>
+        <button class="sign-in-btn" id="sign-in-btn">
             <span>S</span>
             <span>i</span>
             <span>g</span>
             <span>n</span>
             <span>&nbsp;</span>
-            <span>U</span>
-            <span>p</span>
+            <span>I</span>
+            <span>n</span>
         </button>
+    </div>
+
+    <div class="sign-in">
+        <h1>Fun is comming!</h1>
+        <p>Just a few steps away from turning your journey into an epic adventure!</p>
+        <form>
+            <input type="text" placeholder="Enter your username" required>
+            <input type="email" placeholder="Enter your email" required>
+            <div class="password-field">
+                <input type="password" id="password" placeholder="Enter your password" required>
+                <span class="toggle-password" onclick="togglePassword()">
+              <i class="fas fa-eye-slash"></i>
+            </span>
+            </div>
+            <button class="sign-up-btn" type="submit">Sign Up</button>
+        </form>
     </div>
 </div>
 
 <script>
-    const signUpBtn = document.getElementById('sign-up-btn');
+    const signUpBtn = document.getElementById('sign-in-btn');
 
     signUpBtn.addEventListener('click', () => {
       window.location.href = 'login.html';

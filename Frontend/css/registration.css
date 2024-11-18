@@ -37,12 +37,12 @@ body {
     text-align: center;
 }
 
-.sign-in {
-    background-color: #ffffff;
-}
-
 .sign-up {
     background: linear-gradient(120deg, #9dd6f9, #57b1e4);
+}
+
+.sign-in {
+    background-color: #ffffff;
 }
 
 h1 {
@@ -55,14 +55,14 @@ p {
     margin-bottom: 20px;
 }
 
-.sign-in h1,
-.sign-in p {
-    color: #57b1e4;
-}
-
 .sign-up h1,
 .sign-up p {
     color: #ffffff;
+}
+
+.sign-in h1,
+.sign-in p {
+    color: #57b1e4;
 }
 
 form {
@@ -106,17 +106,6 @@ input:focus {
     color: #57b1e4;
 }
 
-.forgot-password {
-    font-size: 0.8rem;
-    color: #57b1e4;
-}
-
-.forgot-password:hover {
-    box-shadow: 0px 5px 10px rgba(87, 177, 228, 0.5);
-    border-color: #4593c7;
-    transition: all 0.5s ease;
-}
-
 button {
     display: flex;
     justify-content: center;
@@ -132,14 +121,14 @@ button {
     color: #ffffff;
 }
 
-.sign-in-btn:hover {
+.sign-up-btn:hover {
     box-shadow: 0px 5px 10px rgba(87, 177, 228, 0.5);
     border-color: #4593c7;
     transition: all 0.5s ease;
     transform: translateY(-5px);
 }
 
-.sign-up-btn {
+.sign-in-btn {
     padding: 20px 30px;
     background-color: #ffffff;
     color: #57b1e4;
@@ -151,23 +140,23 @@ button {
     transition: all 0.6s ease;
 }
 
-.sign-up-btn span {
+.sign-in-btn span {
     display: inline-block;
     transform: translateY(0);
     transition: transform 0.6s ease;
 }
 
-.sign-up-btn:hover span {
+.sign-in-btn:hover span {
     animation: bounce 0.6s ease infinite;
 }
 
-.sign-up-btn:hover span:nth-child(1) { animation-delay: 0s; }
-.sign-up-btn:hover span:nth-child(2) { animation-delay: 0.1s; }
-.sign-up-btn:hover span:nth-child(3) { animation-delay: 0.2s; }
-.sign-up-btn:hover span:nth-child(4) { animation-delay: 0.3s; }
-.sign-up-btn:hover span:nth-child(5) { animation-delay: 0.4s; }
-.sign-up-btn:hover span:nth-child(6) { animation-delay: 0.5s; }
-.sign-up-btn:hover span:nth-child(7) { animation-delay: 0.6s; }
+.sign-in-btn:hover span:nth-child(1) { animation-delay: 0s; }
+.sign-in-btn:hover span:nth-child(2) { animation-delay: 0.1s; }
+.sign-in-btn:hover span:nth-child(3) { animation-delay: 0.2s; }
+.sign-in-btn:hover span:nth-child(4) { animation-delay: 0.3s; }
+.sign-in-btn:hover span:nth-child(5) { animation-delay: 0.4s; }
+.sign-in-btn:hover span:nth-child(6) { animation-delay: 0.5s; }
+.sign-in-btn:hover span:nth-child(7) { animation-delay: 0.6s; }
 
 @keyframes bounce {
     50% {
