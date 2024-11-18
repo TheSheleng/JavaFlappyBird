@@ -1,0 +1,165 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Press Start 2P', cursive;
+    background: linear-gradient(80deg, #9dd6f9, #57b1e4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    height: 80%;
+    max-width: 1200px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.20), 0px 5px 5px rgba(0, 0, 0, 0.10);
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+.container:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.40), 0px 10px 10px rgba(0, 0, 0, 0.20);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.sign-in,
+.sign-up {
+    flex: 100%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.sign-up {
+    background: linear-gradient(120deg, #9dd6f9, #57b1e4);
+}
+
+.sign-in {
+    background-color: #ffffff;
+}
+
+h1 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+}
+
+.sign-up h1,
+.sign-up p {
+    color: #ffffff;
+}
+
+.sign-in h1,
+.sign-in p {
+    color: #57b1e4;
+}
+
+form {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border:2px solid #57b1e4;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+input:hover,
+input:focus {
+    box-shadow: 0px 5px 10px rgba(87, 177, 228, 0.5);
+    border-color: #4593c7;
+    transition: all 0.5s ease;
+}
+
+.password-field {
+    position: relative;
+    width: 100%;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #57b1e4;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+    font-size: 0.8rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    background-color: #57b1e4;
+    color: #ffffff;
+}
+
+.sign-up-btn:hover {
+    box-shadow: 0px 5px 10px rgba(87, 177, 228, 0.5);
+    border-color: #4593c7;
+    transition: all 0.5s ease;
+    transform: translateY(-5px);
+}
+
+.sign-in-btn {
+    padding: 20px 30px;
+    background-color: #ffffff;
+    color: #57b1e4;
+    font-size: 1.6rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.6s ease;
+}
+
+.sign-in-btn span {
+    display: inline-block;
+    transform: translateY(0);
+    transition: transform 0.6s ease;
+}
+
+.sign-in-btn:hover span {
+    animation: bounce 0.6s ease infinite;
+}
+
+.sign-in-btn:hover span:nth-child(1) { animation-delay: 0s; }
+.sign-in-btn:hover span:nth-child(2) { animation-delay: 0.1s; }
+.sign-in-btn:hover span:nth-child(3) { animation-delay: 0.2s; }
+.sign-in-btn:hover span:nth-child(4) { animation-delay: 0.3s; }
+.sign-in-btn:hover span:nth-child(5) { animation-delay: 0.4s; }
+.sign-in-btn:hover span:nth-child(6) { animation-delay: 0.5s; }
+.sign-in-btn:hover span:nth-child(7) { animation-delay: 0.6s; }
+
+@keyframes bounce {
+    50% {
+        transform: translateY(-10px);
+    }
+}
