@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="registration.css">
+</head>
+<body>
+<div class="container">
+    <div class="sign-in">
+        <h1>Ready to Fly?</h1>
+        <p>Sign In and start your adventure!</p>
+        <form>
+            <input type="text" placeholder="Enter your username" required>
+            <div class="password-field">
+                <input type="password" id="password" placeholder="Enter your password" required>
+                <span class="toggle-password" onclick="togglePassword()">
+            <i class="fas fa-eye-slash"></i>
+          </span>
+            </div>
+            <a href="#" class="forgot-password">Forgot your password?</a>
+            <button class="sign-in-btn" type="submit">Sign In</button>
+        </form>
+    </div>
+
+    <div class="sign-up">
+        <h1>Join the Fun!</h1>
+        <p>Create an account to track your progress and play anytime & anywhere!</p>
+        <button class="sign-up-btn" id="sign-up-btn">
+            <span>S</span>
+            <span>i</span>
+            <span>g</span>
+            <span>n</span>
+            <span>&nbsp;</span>
+            <span>U</span>
+            <span>p</span>
+        </button>
+    </div>
+</div>
+
+<script>
+    const signUpBtn = document.getElementById('sign-up-btn');
+
+    signUpBtn.addEventListener('click', () => {
+      window.location.href = 'login.html';
+    });
+
+    function togglePassword() {
+      const passwordInput = document.getElementById('password');
+      const toggleIcon = document.querySelector('.toggle-password i');
+      const isPasswordVisible = passwordInput.type === 'text';
+
+      passwordInput.type = isPasswordVisible ? 'password' : 'text';
+      toggleIcon.classList.toggle('fa-eye');
+      toggleIcon.classList.toggle('fa-eye-slash');
+    }
+</script>
+</body>
+</html>
