@@ -1,0 +1,53 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Press Start 2P', cursive;
+    background: linear-gradient(80deg, #9dd6f9, #57b1e4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+}
+
+.title {
+    font-size: 4rem;
+    color: #ffffff;
+    animation: pulse 2s infinite; 
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+.loading-bar {
+    width: 80%;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 2px; 
+    margin: 20px auto 0;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(195, 181, 181, 0.2); 
+}
+
+.loading-bar .pixel {
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.1); 
+    transition: background-color 0.2s ease-in-out; 
+}
+
+.loading-bar .pixel.active {
+    background-color: #ffffff;
+}
