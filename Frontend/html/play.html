@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" href="../css/play.css">
+</head>
+<body>
+    <div class="background" id="bg">
+        <div class="bird" id="bird"></div>
+        <div class=" pipe-top" style="--pipe-height: 40%;" id="pipe-top"></div>
+        <div class=" pipe-bottom" style="--pipe-height: 20%;" id="pipe-bottom"></div>
+        <div class="ground" id="ground"></div>
+    </div>
+
+    <script>
+        const bird = document.querySelector('.bird');
+        const birdSprites = [
+            '../images/birdMiddle.png',
+            '../images/birdMiddle.png',
+            '../images/birdMiddle.png'
+        ];
+
+        let currentSprite = 0;
+
+        function changeBirdSprite() {
+            currentSprite = (currentSprite + 1) % birdSprites.length; 
+            bird.style.backgroundImage = `url(${birdSprites[currentSprite]})`;
+        }
+        setInterval(changeBirdSprite, 200);
+    </script>
+</body>
+</html>
