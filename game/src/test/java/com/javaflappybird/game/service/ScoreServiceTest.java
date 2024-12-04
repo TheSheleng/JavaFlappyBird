@@ -36,10 +36,24 @@ class ScoreServiceTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
-        user = new User(1, "testUser", "test@example.com", "hashedPassword", "salt", null, LocalDateTime.now(), null);
-        score = new Score(1, user, 100, LocalDateTime.now(), null, "Great score!");
+        user = User.builder()
+                .userId(1)
+                .username("testUser")
+                .email("test@example.com")
+                .passwordHash("hashedPassword")
+                .salt("salt")
+                .createdAt(LocalDateTime.now())
+                .build();
+
+        score = Score.builder()
+                .scoreId(1)
+                .user(user)
+                .score(100)
+                .playDate(LocalDateTime.now())
+                .message("Great score!")
+                .build();
     }
+
 
     @Test
     void testCreateScore() {
