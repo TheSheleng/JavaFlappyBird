@@ -92,6 +92,8 @@
         SettingsPage.prototype.navigateBack = function() {
             window.history.back();
         };
+
+        // TODO: saveSettings, showInfo, resetHighScore
     
         SettingsPage.prototype.addEventListeners = function() {
             this.themeIcon.addEventListener('click', this.toggleTheme.bind(this));
@@ -100,7 +102,6 @@
         };
     
         const settingsPage = new SettingsPage();
-        settingsPage.display()
     </script>
 </body>
 </html>
