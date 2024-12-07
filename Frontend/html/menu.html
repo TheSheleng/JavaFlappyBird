@@ -9,47 +9,58 @@
     <link rel="stylesheet" href="../css/menu.css">
 </head>
 <body>
-<div class="container">
-    <h1>Main Menu</h1>
-    <div class="menu-options">
-        <button class="menu-btn" id="play-btn">Play</button>
-        <button class="menu-btn" id="leaderboard-btn">Leaderboard</button>
-        <button class="menu-btn" id="settings-btn">Settings</button>
-        <button class="menu-btn" id="about-btn">About</button>
-        <button class="menu-btn exit-btn" id="exit-btn">Exit</button>
+    <div class="container">
+        <h1>Main Menu</h1>
+        <div class="menu-options">
+            <button class="menu-btn" id="play-btn">Play</button>
+            <button class="menu-btn" id="leaderboard-btn">Leaderboard</button>
+            <button class="menu-btn" id="settings-btn">Settings</button>
+            <button class="menu-btn" id="about-btn">About</button>
+            <button class="menu-btn exit-btn" id="exit-btn">Exit</button>
+        </div>
     </div>
-</div>
 
-<script>
-    const playBtn = document.getElementById('play-btn');
-    const leaderboardBtn = document.getElementById('leaderboard-btn');
-    const settingsBtn = document.getElementById('settings-btn');
-    const aboutBtn = document.getElementById('about-btn');
-    const exitBtn = document.getElementById('exit-btn');
-
-    playBtn.addEventListener('click', () => {
-      window.location.href = 'game.html';
-    });
-
-
-    leaderboardBtn.addEventListener('click', () => {
-      window.location.href = 'leaderboard.html';
-    });
-
-
-    settingsBtn.addEventListener('click', () => {
-      window.location.href = 'settings.html';
-    });
-
-
-    aboutBtn.addEventListener('click', () => {
-      window.location.href = 'about.html';
-    });
-
-
-    exitBtn.addEventListener('click', () => {
-      window.location.href = 'exit.html';
-    });
-</script>
+    <script>
+        function MenuPage() {
+            this.playBtn = document.getElementById('play-btn');
+            this.leaderboardBtn = document.getElementById('leaderboard-btn');
+            this.settingsBtn = document.getElementById('settings-btn');
+            this.aboutBtn = document.getElementById('about-btn');
+            this.exitBtn = document.getElementById('exit-btn');
+    
+            this.addEventListeners();
+        }
+        
+        MenuPage.prototype.navigateToPlay = function() {
+            window.location.href = 'play.html';
+        };
+        
+        MenuPage.prototype.navigateToLeaderboard = function() {
+            window.location.href = 'leaderboard.html';
+        };
+        
+        MenuPage.prototype.navigateToSettings = function() {
+            window.location.href = 'settings.html';
+        };
+        
+        MenuPage.prototype.navigateToAbout = function() {
+            window.location.href = 'about.html';
+        };
+        
+        MenuPage.prototype.exitGame = function() {
+            window.location.href = 'exit.html';
+        };
+        
+        MenuPage.prototype.addEventListeners = function() {
+            this.playBtn.addEventListener('click', this.navigateToPlay);
+            this.leaderboardBtn.addEventListener('click', this.navigateToLeaderboard);
+            this.settingsBtn.addEventListener('click', this.navigateToSettings);
+            this.aboutBtn.addEventListener('click', this.navigateToAbout);
+            this.exitBtn.addEventListener('click', this.exitGame);
+        };
+        
+        const menuPage = new MenuPage();
+        menuPage.display();
+    </script>
 </body>
 </html>
