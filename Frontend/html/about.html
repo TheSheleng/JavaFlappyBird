@@ -8,18 +8,37 @@
     <link rel="stylesheet" href="../css/about.css">
 </head>
 <body>
-<div class="container">
-    <h1>About the Game</h1>
-    <div class="about-content">
-        <p>Welcome to Flappy Bird Reimagined — our take on the classic Flappy Bird, crafted as a Java exam project.Created by Andrey, Vladislav and Bogdan.</p>
-        <ul>
-            <li>Take on exciting challenges;</li>
-            <li>Climb the leaderboard to be the best;</li>
-            <li>Enjoy quick and fun gameplay;</li>
-        </ul>
-        <p>This project is more than a game — it is a celebration of our teamwork and creativity. We hope you feel the passion we poured into it!</p>        
+    <div class="container">
+        <h1>About the Game</h1>
+        <div class="about-content">
+            <p>Welcome to Flappy Bird Reimagined — our take on the classic Flappy Bird, crafted as a Java exam project.Created by Andrey, Vladislav and Bogdan.</p>
+            <ul>
+                <li>Take on exciting challenges;</li>
+                <li>Climb the leaderboard to be the best;</li>
+                <li>Enjoy quick and fun gameplay;</li>
+            </ul>
+            <p>This project is more than a game — it is a celebration of our teamwork and creativity. We hope you feel the passion we poured into it!</p>        
+        </div>
+        <button class="back-btn">Back</button>
     </div>
-    <button class="back-btn">Back</button>
-</div>
+
+    <script>
+        function AboutPage() {
+            this.backBtn = document.querySelector('.back-btn');
+            
+            this.addEventListeners();
+        }
+        
+        AboutPage.prototype.navigateBack = function() {
+            window.history.back(); 
+        };
+        
+        AboutPage.prototype.addEventListeners = function() {
+            this.backBtn.addEventListener('click', () => this.navigateBack());
+        };
+        
+        const aboutPage = new AboutPage();
+        aboutPage.display();
+    </script>
 </body>
 </html>
