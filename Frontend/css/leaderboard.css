@@ -28,6 +28,21 @@ body {
 h1 {
     font-size: 2rem;
     color: #57b1e4;
+    margin-bottom: 20px;
+}
+
+.leaderboard-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+    padding: 20px 30px;
+}
+
+.leaderboard-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .leaderboard-item {
@@ -36,12 +51,11 @@ h1 {
     align-items: center;
     color: #ffffff;
     background-color: #57b1e4;
-    padding: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    padding: 20px 30px;
     border-radius: 20px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.20), 0px 5px 5px rgba(0, 0, 0, 0.10);
     transition: transform 0.5s ease, box-shadow 0.5s ease;
+    box-sizing: border-box;
 }
 
 .leaderboard-item:hover {
@@ -72,4 +86,23 @@ img {
 
 .current-user {
     border: 2px #ff4d4d solid;
+}
+
+.back-btn {
+    font-family: 'Press Start 2P', cursive;
+    cursor: pointer;
+    padding: 20px 30px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 20px;
+    background-color: #57b1e4;
+    color: #ffffff;
+    width: 50%;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #4593c7;
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 20px rgba(69, 147, 199, 0.5);
 }
