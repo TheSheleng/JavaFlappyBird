@@ -55,20 +55,37 @@
     </div>
 
     <script>
-    const pixels = document.querySelectorAll('.pixel');
-    let currentPixel = 0;
-
-    const interval = setInterval(() => {
-        if (currentPixel < pixels.length) {
-            pixels[currentPixel].classList.add('active'); 
-            currentPixel++;
-        } else {
-            clearInterval(interval); 
-            setTimeout(() => {
-            window.location.href = "login.html"; 
-        }, 1000); 
-    }
-    }, 200); 
+        class IntroPage {
+            constructor() {
+                this.pixels = document.querySelectorAll('.pixel');
+                this.currentPixel = 0;
+            }
+            
+            display() {
+                this.startLoadingAnimation();
+            }
+            
+            startLoadingAnimation() {
+                const interval = setInterval(() => {
+                    if (this.currentPixel < this.pixels.length) {
+                        this.pixels[this.currentPixel].classList.add('active');
+                        this.currentPixel++;
+                    } else {
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            this.navigateToLogin(); 
+                        }, 1000);
+                    }
+                }, 200);
+            }
+            
+            navigateToLogin() {
+                window.location.href = "login.html";
+            }
+        }
+        
+        const introPage = new IntroPage();
+        introPage.display();
     </script>
 </body>
 </html>
