@@ -19,24 +19,24 @@
             </ul>
             <p>This project is more than a game — it is a celebration of our teamwork and creativity. We hope you feel the passion we poured into it!</p>        
         </div>
-        <button class="back-btn">Back</button>
+        <button class="back-btn" id="back-btn">Back</button>
     </div>
 
     <script>
         function AboutPage() {
-            this.backBtn = document.querySelector('.back-btn');
-            
+            this.backBtn = document.getElementById('back-btn');
+
             this.addEventListeners();
         }
-        
+
         AboutPage.prototype.navigateBack = function() {
-            window.history.back(); 
+            window.history.back();
         };
-        
+
         AboutPage.prototype.addEventListeners = function() {
-            this.backBtn.addEventListener('click', () => this.navigateBack());
+            this.backBtn.addEventListener('click', this.navigateBack);
         };
-        
+
         const aboutPage = new AboutPage();
     </script>
 </body>
