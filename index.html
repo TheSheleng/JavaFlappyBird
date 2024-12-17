@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Bird README</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+    <style>
+    body {
+        background-color: #57b1e4;
+        color: #57b1e4;
+        font-family: 'Press Start 2P';
+        line-height: 2rem;
+        margin: 0 auto;
+        max-width: 80%;
+    }
+
+    .container {
+        background-color: #ffffff;
+        border-radius: 20px;
+        margin: 20px;
+        padding: 20px;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.20), 0px 5px 5px rgba(0, 0, 0, 0.10);
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .container:hover {
+        transform: scale(1.01);
+        box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.40), 0px 10px 10px rgba(0, 0, 0, 0.20);
+    }
+
+    .gray {
+        background-color: #434343;
+        padding-left: 50px;
+    }
+
+    .black {
+        background-color: #1A1A1A;
+        padding-left: 50px;
+    }
+
+    a {
+        color: #57b1e4;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #4186b0; 
+    }
+
+    @media (max-width: 1200px) {
+        body {
+            max-width: 90%;
+        }
+
+        .container {
+            margin: 15px;
+            padding: 15px;
+        }
+
+        h1, h2 {
+            font-size: 1.5rem;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        body {
+            max-width: 95%;
+        }
+
+        .container {
+            margin: 10px;
+            padding: 10px;
+        }
+
+        h1 {
+            font-size: 1.2rem;
+        }
+
+        h2 {
+            font-size: 1rem;
+        }
+
+        ul {
+            padding-left: 15px;
+        }
+
+        a {
+            font-size: 0.9rem;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    @media (max-width: 480px) {
+        body {
+            max-width: 100%;
+            font-size: 0.9rem;
+        }
+
+        .container {
+            margin: 5px;
+            padding: 5px;
+        }
+
+        h1 {
+            font-size: 1.1rem;
+        }
+
+        h2 {
+            font-size: 0.9rem;
+        }
+
+        ul {
+            padding-left: 10px;
+        }
+
+        a {
+            font-size: 0.8rem;
+        }
+    }
+
+@media (max-width: 360px) {
+    body {
+        max-width: 100%;
+        font-size: 0.85rem;
+        padding: 0 10px;
+    }
+
+    .container {
+        margin: 5px;
+        padding: 5px;
+    }
+
+    h1 {
+        font-size: 1.1rem;
+    }
+
+    h2 {
+        font-size: 0.9rem;
+    }
+
+    ul {
+        padding-left: 5px;
+    }
+
+    a {
+        font-size: 0.75rem;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center;">Flappy Bird README</h1>
+    </div>
+
+    <div class="container">
+        <h2><u>Quick Navigation:</u></h2>
+        <ul>
+            <li><a href="#project-description">Project Description</a></li>
+            <li><a href="#technology-stack">Technology Stack</a></li>
+            <li><a href="#project-architecture">Project Architecture</a></li>
+            <li><a href="#functionality">Functionality</a></li>
+            <li><a href="#setup">Setting up and running the project</a></li>
+            <li><a href="#development-team">Development Team</a></li>
+            <li><a href="#license">License</a></li>
+        </ul>
+    </div>
+
+    <div class="container" id="project-description">
+        <h2>Project Description:</h2>
+        <h4>Flappy Bird is an application developed as part of a course project for a Java programming class. The goal of the project is to create a game that features user authentication, record tracking, and a leaderboard displaying the top players. The project also focuses on implementing the core gameplay mechanics</h4>
+    </div>
+
+    <div class="container" id="technology-stack">
+        <h2>Technology Stack:</h2>
+        <ul>
+            <u>1. Backend:</u>
+            <ul style="list-style-type: disc;">
+                <li>  Java, Spring Boot</li>
+                <li>  Spring JPA, Hibernate</li>
+                <li>  Liquibase</li>
+                <li>  MariaDB</li>
+            </ul>
+            <u>2. Frontend:</u>
+            <ul style="list-style-type: disc;">
+                <li>HTML, CSS(Vanilla)</li>
+                <li>Google Fonts</li>
+                <li>Font Awesome</li> 
+                <li>JavaScript & TypeScript</li>
+            </ul>
+            <u>3. Testing:</u>
+            <ul style="list-style-type: disc;">
+                <li>Mockito</li>
+                <li>Spring DevTools</li>
+            </ul>
+        </ul>         
+    </div>
+
+    <div class="container" id="project-architecture">
+        <h2>Project Architecture:</h2>
+        <h4>The project is built using <u>the MVC</u> pattern:</h4>
+        <ul>
+            <li><strong>Model:</strong> Database Tables</li>
+            <li><strong>View:</strong> Pages implemented using HTML and CSS</li>
+            <li><strong>Controller:</strong> Request Management and Server-Client Interaction</li>
+        </ul>
+    </div>
+
+    <div class="container" id="functionality">
+        <h2>Functionality:</h2>
+        <ul>
+            <u>1. Registration and Authentication Page:</u>
+            <ul style="list-style-type: disc;">
+                <li>New user registration with fields for username, email, and password</li>
+                <li>Authentication</li>
+                <li>Error Display</li>
+                <li>Show and hide password with a button</li>
+                <li>Page Navigation</li>
+            </ul>
+            <u>2. Flappy Bird Game:</u>
+            <ul style="list-style-type: disc;">
+                <li>The basic game logic is implemented with physics elements: the bird falls down and rises when the button is pressed</li>
+                <li>Score Calculation</li>
+                <li>Saving high scores to the database</li>
+            </ul>
+            <u>3. User Profile:</u>
+            <ul style="list-style-type: disc;">
+                <li>Displaying user data</li>
+                <li>Profile Editing</li>
+                <li>Changing Settings</li>
+                <li>Resetting the score</li>
+            </ul>
+            <u>4. Leaderboard Page:</u>
+            <ul style="list-style-type: disc;">
+                <li>Displaying top players</li>
+                <li>Displaying the user's rank</li>
+                <li>Sorting by score</li>
+            </ul>
+            <u>5. Additional Pages:</u>
+            <ul style="list-style-type: disc;">
+                <li><strong>About:</strong> Game and Developers Information</li>
+                <li><strong>Menu:</strong> Main Menu for Navigation</li>
+                <li><strong>Exit:</strong> Exit Game Window</li>
+            </ul>
+        </ul>
+    </div>
+
+    <div class="container" id="setup">
+        <h2>Setting up and running the project:</h2>
+        <ul>
+            <u>1. Configure the database connection file <strong>application.properties</strong>:</u>
+            <code style="color: #ffffff; font-family:'Courier New', Courier, monospace; font-weight:bold;">
+                <div class="gray">spring.application.name=game</div>
+                <div class="black">&nbsp;</div>
+                <div class="gray"># Datasource</div>
+                <div class="black">spring.datasource.url=*YOUR_VALUE*</div>
+                <div class="gray">spring.datasource.username=*YOUR_VALUE*</div>
+                <div class="black">spring.datasource.password=*YOUR_VALUE*</div>
+                <div class="gray">&nbsp;</div>
+                <div class="black"># JPA</div>
+                <div class="gray">spring.jpa.hibernate.ddl-auto=update</div>
+                <div class="black">spring.jpa.show-sql=true</div>
+                <div class="gray">spring.jpa.properties.hibernate.format_sql=true</div>
+                <div class="black">&nbsp;</div>
+                <div class="gray"># Liquibase</div>
+                <div class="black">spring.liquibase.enabled=true</div>
+                <div class="gray">spring.liquibase.change-log=classpath:db/changelog/db.changelog-master.xml</div>
+                <div class="black">spring.datasource.driver-class-name=org.mariadb.jdbc.Driver</div>
+                <div class="gray">spring.datasource.platform=mariadb</div>
+                <div class="black">spring.datasource.jpa.database-platform=org.hibernate.dialect.MariaDBDialect</div>
+            </code>
+            <u>2. Run the application through the main file:</u>
+            <code style="color: #ffffff; font-family:'Courier New', Courier, monospace; font-weight:bold;">
+                <div class="gray">mvn spring-boot:run</div>
+            </code>
+            <u>3. Open your browser and go to the address:</u>
+            <code style="color: #ffffff; font-family:'Courier New', Courier, monospace; font-weight:bold;">
+                <div class="gray">http://localhost:8080</div>
+            </code>
+        </ul> 
+    </div> 
+
+    <div class="container" id="development-team">
+        <h2>Development Team:</h2>
+        <ul>
+            <li><strong>Frontend-developer:</strong> Bogdan</li>
+            <li><strong>Backend-developer:</strong> Andrey</li>
+            <li><strong>Game Logic Developer:</strong> Vladislav</li>
+        </ul>
+    </div>
+
+    <div class="container" id="license">
+        <h2>License:</h2>
+        <h4>The project is licensed under <u>the MIT</u> license</h4>
+        <h4>You are free to use, copy, modify, and distribute this project, provided that the copyright notice is preserved</h4>
+        <h4>The license text is available in the file: <a href="https://github.com/TheSheleng/JavaFlappyBird/blob/main/LICENSE" style="text-decoration: underline;">LICENSE</a></h4>
+    </div>
+
+    <div class="container">
+        <h1 style="text-align: center;">THE GAME AWAITS YOU</h1>
+        <div style="text-align: center;">
+            <img src="https://i.gifer.com/9MX2.gif">
+        </div>
+        <h2 style="text-align: center;">created by ukrainian students</h2>
+    </div>
+</body>
+</html>
