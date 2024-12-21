@@ -1,9 +1,9 @@
 ﻿import {GameObject} from "./GameObject";
 import {Game} from "../Game";
-import {Vector2} from "../SimpleTypes";
+import {Vector2D} from "../SimpleTypes";
 
 export class Pawn extends GameObject {
-    public constructor(game: Game, location: Vector2, fallSpeed: number, jumpImpulse: number) {
+    public constructor(game: Game, location: Vector2D, fallSpeed: number, jumpImpulse: number) {
         super(game, location);
 
         this.fallSpeed = fallSpeed;

@@ -51,10 +51,14 @@ export class Game {
         }
 
         // Start the tick after all objects have been created
-        requestAnimationFrame(this.tick);
+        this.startTick();
     }
 
     public onTick: MulticastDelegate<() => void> = new MulticastDelegate<() => void>();
+
+    public startTick(): void {
+        requestAnimationFrame(this.tick);
+    }
 
     public endPlay(): void {
         // TODO: Stop tick

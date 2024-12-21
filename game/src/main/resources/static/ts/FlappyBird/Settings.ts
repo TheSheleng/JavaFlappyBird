@@ -1,7 +1,7 @@
-﻿import {Vector2} from "./SimpleTypes";
+﻿import {Vector2D} from "./SimpleTypes";
 
 export class Settings {
-    public pawnInitLocation: Vector2 = new Vector2(0, 0);
+    public pawnInitLocation: Vector2D = new Vector2D(0, 0);
     public pawnFallSpeed: number = 0.2;
     public pawnJumpImpulse: number = 1;
 

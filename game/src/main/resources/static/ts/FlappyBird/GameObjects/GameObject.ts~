@@ -25,7 +25,7 @@ export class GameObject {
     }
 
     public get size(): Vector2D {
-        return this._size;
+        return _size;
     }
 
     public set size(newSize: Vector2D) {
