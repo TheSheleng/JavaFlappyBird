@@ -1,17 +1,15 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Pawn = void 0;
-const GameObject_1 = require("./GameObject");
-class Pawn extends GameObject_1.GameObject {
+import { GameObject } from "./GameObject.js";
+export class Pawn extends GameObject {
     constructor(game, location, fallSpeed, jumpImpulse) {
         super(game, location);
-        this.velocity = 0;
         this.fallSpeed = fallSpeed;
         this.jumpImpulse = jumpImpulse;
     }
     tick() {
     }
+    velocity = 0;
+    fallSpeed;
+    jumpImpulse;
     addImpulse() {
     }
 }
-exports.Pawn = Pawn;

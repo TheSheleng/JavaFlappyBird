@@ -1,7 +1,7 @@
-﻿import {GameObject} from "./GameObject";
-import {Game} from "../Game";
-import {Vector2D} from "../SimpleTypes";
-import {Trigger} from "./Trigger";
+﻿import {GameObject} from "./GameObject.js";
+import {Game} from "../Game.js";
+import {Vector2D} from "../SimpleTypes.js";
+import {Trigger} from "./Trigger.js";
 
 export class Obstacle extends GameObject {
     public constructor(game: Game, location: Vector2D, moveSpeed: number) {
@@ -9,11 +9,17 @@ export class Obstacle extends GameObject {
 
         this.moveSpeed = moveSpeed;
 
+        this.size = new Vector2D(50, 1000);
         this.randomizeYLocation();
+
+        this.trigger = new Trigger(game, new Vector2D(0, 0));
+    }
+
+    public get location(): Vector2D {
+        return super.location;
     }
 
     public set location(newLocation: Vector2D) {
-        // @ts-ignore
         super.location = newLocation;
     }
 

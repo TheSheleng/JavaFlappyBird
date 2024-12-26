@@ -1,19 +1,24 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Obstacle = void 0;
-const GameObject_1 = require("./GameObject");
-class Obstacle extends GameObject_1.GameObject {
+import { GameObject } from "./GameObject.js";
+import { Vector2D } from "../SimpleTypes.js";
+import { Trigger } from "./Trigger.js";
+export class Obstacle extends GameObject {
     constructor(game, location, moveSpeed) {
         super(game, location);
         this.moveSpeed = moveSpeed;
+        this.size = new Vector2D(50, 1000);
         this.randomizeYLocation();
+        this.trigger = new Trigger(game, new Vector2D(0, 0));
+    }
+    get location() {
+        return super.location;
     }
     set location(newLocation) {
-        // @ts-ignore
         super.location = newLocation;
     }
     tick() {
     }
+    moveSpeed;
+    trigger;
     randomizeYLocation() {
         // TODO: Implement randomization
         return -1;
@@ -21,4 +26,3 @@ class Obstacle extends GameObject_1.GameObject {
     onTriggerPawnOverlap() {
     }
 }
-exports.Obstacle = Obstacle;

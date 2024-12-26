@@ -1,12 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.GameObject = void 0;
-const SimpleTypes_1 = require("../SimpleTypes");
-class GameObject {
+import { Vector2D } from "../SimpleTypes.js";
+export class GameObject {
     constructor(game, location) {
-        this.htmlElement = null;
-        this._location = new SimpleTypes_1.Vector2D();
-        this._size = new SimpleTypes_1.Vector2D();
         this.game = game;
         this.location = location;
         this.game.onTick.add(() => {
@@ -36,6 +30,9 @@ class GameObject {
             this.htmlElement.style.width = this.size.x + "px";
         }
     }
+    game;
+    htmlElement = null;
     tick() { }
+    _location = new Vector2D();
+    _size = new Vector2D();
 }
-exports.GameObject = GameObject;

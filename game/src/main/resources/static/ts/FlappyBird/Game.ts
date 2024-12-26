@@ -1,9 +1,9 @@
-﻿import {MulticastDelegate, Vector2D} from "./SimpleTypes";
-import {Settings} from "./Settings";
-import {Obstacle} from "./GameObjects/Obstacle";
-import {Floor} from "./GameObjects/Floor";
-import {Pawn} from "./GameObjects/Pawn";
-import {GameObject} from "./GameObjects/GameObject";
+﻿import {MulticastDelegate, Vector2D} from "./SimpleTypes.js";
+import {Settings} from "./Settings.js";
+import {Obstacle} from "./GameObjects/Obstacle.js";
+import {Floor} from "./GameObjects/Floor.js";
+import {Pawn} from "./GameObjects/Pawn.js";
+import {GameObject} from "./GameObjects/GameObject.js";
 
 export class Game {
     public constructor(settings: Settings) {
@@ -51,18 +51,17 @@ export class Game {
         }
 
         // Start the tick after all objects have been created
-        this._requestAnimationFrameId = requestAnimationFrame(this.tick);
+        this._requestAnimationFrameId = requestAnimationFrame(() => this.tick());
     }
 
     public onTick: MulticastDelegate<() => void> = new MulticastDelegate<() => void>();
 
     public endPlay(): void {
         cancelAnimationFrame(this._requestAnimationFrameId);
-
-        this.sendScore();
     }
 
     protected tick(): void {
+        this.sendScore();
         this.onTick.broadcast();
     }
 
@@ -86,9 +85,11 @@ export class Game {
     private _floor: Floor;
     private _pawn: Pawn;
 
-    private _requestAnimationFrameId: number;
+    private readonly _requestAnimationFrameId: number;
 
     private sendScore(): void {
 
     }
 }
+
+new Game(new Settings());

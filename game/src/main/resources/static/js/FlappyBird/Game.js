@@ -1,24 +1,19 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Game = void 0;
-const SimpleTypes_1 = require("./SimpleTypes");
-const Obstacle_1 = require("./GameObjects/Obstacle");
-const Floor_1 = require("./GameObjects/Floor");
-const Pawn_1 = require("./GameObjects/Pawn");
-class Game {
+import { MulticastDelegate, Vector2D } from "./SimpleTypes.js";
+import { Settings } from "./Settings.js";
+import { Obstacle } from "./GameObjects/Obstacle.js";
+import { Floor } from "./GameObjects/Floor.js";
+import { Pawn } from "./GameObjects/Pawn.js";
+export class Game {
     constructor(settings) {
-        this.onTick = new SimpleTypes_1.MulticastDelegate();
-        this.score = 0;
-        this._obstacles = [];
         // Create the pawn
         this._pawn = this.createPawn(settings.pawnInitLocation, settings.pawnFallSpeed, settings.pawnJumpImpulse);
         // Create the floor
-        this._floor = this.createGameObject(Floor_1.Floor, new SimpleTypes_1.Vector2D(0, 0));
+        this._floor = this.createGameObject(Floor, new Vector2D(0, 0));
         // Calculate location of the first obstacle (pawn's X location + pawn's width + distance between obstacles)
         const firstObstacleLocationX = this._pawn.location.x + this._pawn.size.x +
             settings.distanceBetweenObstacles;
         // Create the first obstacle to know its size
-        const firstObstacle = this.createObstacle(new SimpleTypes_1.Vector2D(firstObstacleLocationX, 0), settings.obstaclesMoveSpeed);
+        const firstObstacle = this.createObstacle(new Vector2D(firstObstacleLocationX, 0), settings.obstaclesMoveSpeed);
         // Add the first obstacle to the list of obstacles
         this._obstacles.push(firstObstacle);
         // Total width covered by one obstacle including the distance between obstacles
@@ -32,30 +27,36 @@ class Game {
             // Calculate the next obstacle's location
             const nextObstacleLocation = this._obstacles[previousObstacleIndex].location.x + obstacleTotalWidth;
             // Create the nextObstacle
-            const nextObstacle = this.createObstacle(new SimpleTypes_1.Vector2D(nextObstacleLocation, 0), settings.obstaclesMoveSpeed);
+            const nextObstacle = this.createObstacle(new Vector2D(nextObstacleLocation, 0), settings.obstaclesMoveSpeed);
             // Add the nextObstacle to the list of obstacles
             this._obstacles.push(nextObstacle);
         }
         // Start the tick after all objects have been created
-        this._requestAnimationFrameId = requestAnimationFrame(this.tick);
+        this._requestAnimationFrameId = requestAnimationFrame(() => this.tick());
     }
+    onTick = new MulticastDelegate();
     endPlay() {
         cancelAnimationFrame(this._requestAnimationFrameId);
-        this.sendScore();
     }
     tick() {
+        this.sendScore();
         this.onTick.broadcast();
     }
+    score = 0;
     createObstacle(location, obstacleMoveSpeed) {
-        return new Obstacle_1.Obstacle(this, location, obstacleMoveSpeed);
+        return new Obstacle(this, location, obstacleMoveSpeed);
     }
     createPawn(location, fallSpeed, jumpImpulse) {
-        return new Pawn_1.Pawn(this, location, fallSpeed, jumpImpulse);
+        return new Pawn(this, location, fallSpeed, jumpImpulse);
     }
     createGameObject(gameObjectConstructor, location) {
         return new gameObjectConstructor(this, location);
     }
+    _obstacles = [];
+    _floor;
+    _pawn;
+    _requestAnimationFrameId;
     sendScore() {
     }
 }
-exports.Game = Game;
+new Game(new Settings());
