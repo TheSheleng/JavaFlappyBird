@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/leaderboard.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Leaderboard</h1>
+        <div class="leaderboard-grid">
+            <div class="leaderboard-column">
+                <div class="leaderboard-item top1">
+                    <span>#1</span>
+                    <img src="avatar1.png" alt="Profile Picture">
+                    <span>USERNAME01</span>
+                    <span>35,980</span>
+                </div>
+                <div class="leaderboard-item top2">
+                    <span>#2</span>
+                    <img src="avatar2.png" alt="Profile Picture">
+                    <span>USERNAME02</span>
+                    <span>31,105</span>
+                </div>
+                <div class="leaderboard-item top3">
+                    <span>#3</span>
+                    <img src="avatar3.png" alt="Profile Picture">
+                    <span>USERNAME03</span>
+                    <span>26,600</span>
+                </div>
+                <div class="leaderboard-item">
+                    <span>#4</span>
+                    <img src="avatar4.png" alt="Profile Picture">
+                    <span>USERNAME04</span>
+                    <span>25,500</span>
+                </div>
+                <div class="leaderboard-item">
+                    <span>#5</span>
+                    <img src="avatar5.png" alt="Profile Picture">
+                    <span>USERNAME05</span>
+                    <span>23,000</span>
+                </div>
+                <div class="leaderboard-item">
+                    <span>#6</span>
+                    <img src="avatar5.png" alt="Profile Picture">
+                    <span>USERNAME06</span>
+                    <span>22,800</span>
+                </div>
+                <div class="leaderboard-item">
+                    <span>#7</span>
+                    <img src="avatar6.png" alt="Profile Picture">
+                    <span>USERNAME07</span>
+                    <span>21,500</span>
+                </div>
+                <div class="leaderboard-item">
+                    <span>#8</span>
+                    <img src="avatar7.png" alt="Profile Picture">
+                    <span>USERNAME08</span>
+                    <span>19,000</span>
+                </div>
+                <div class="leaderboard-item">
+                    <span>#9</span>
+                    <img src="avatar8.png" alt="Profile Picture">
+                    <span>USERNAME09</span>
+                    <span>17,500</span>
+                </div>
+                <div class="leaderboard-item current-user">
+                    <span>#25</span>
+                    <img src="avatar-user.png" alt="Your Avatar">
+                    <span>YOUR_USERNAME</span>
+                    <span>5,000</span>
+                </div>
+            </div>
+        </div>
+        <button class="back-btn" id="back-btn">Back</button>
+    </div>
+
+    <script>
+        function LeaderboardPage() {
+            this.backBtn = document.getElementById('back-btn');
+
+            this.addEventListeners();
+        }
+
+        LeaderboardPage.prototype.navigateBack = function() {
+            window.history.back();
+        };
+
+        LeaderboardPage.prototype.addEventListeners = function() {
+            this.backBtn.addEventListener('click', this.navigateBack);
+        };
+
+        const leaderboardPage = new LeaderboardPage();
+    </script>
+</body>
+</html>

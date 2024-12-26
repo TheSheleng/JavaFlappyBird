@@ -6,6 +6,8 @@ export class Floor extends GameObject {
     public constructor(game: Game, location: Vector2D) {
         super(game, location);
 
-        this.size.x = window.screen.width;
+        this.htmlElement = document.createElement("div");
+
+        this.size = new Vector2D(window.screen.width, 50);
     }
 }

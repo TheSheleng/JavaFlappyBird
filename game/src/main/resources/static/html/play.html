@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="../css/play.css">
 </head>
 <body>
-    <div class="background" id="bg">
+    <!--<div class="background" id="bg">
         <div class="bird" id="bird"></div>
-        <div class=" pipe-top" style="--pipe-height: 40%;" id="pipe-top"></div>
-        <div class=" pipe-bottom" style="--pipe-height: 20%;" id="pipe-bottom"></div>
+        <div class=" pipe-top" style="&#45;&#45;pipe-height: 40%;" id="pipe-top"></div>
+        <div class=" pipe-bottom" style="&#45;&#45;pipe-height: 20%;" id="pipe-bottom"></div>
         <div class="ground" id="ground"></div>
-    </div>
+    </div>-->
 
     <script>
         const bird = document.querySelector('.bird');
@@ -29,6 +29,9 @@
             bird.style.backgroundImage = `url(${birdSprites[currentSprite]})`;
         }
         setInterval(changeBirdSprite, 200);
+    </script>
+    <script src="../js/FlappyBird/Game.js">
+        new Game();
     </script>
 </body>
 </html>

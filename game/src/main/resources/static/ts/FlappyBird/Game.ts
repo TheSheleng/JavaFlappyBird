@@ -51,13 +51,13 @@ export class Game {
         }
 
         // Start the tick after all objects have been created
-        requestAnimationFrame(this.tick);
+        this._requestAnimationFrameId = requestAnimationFrame(this.tick);
     }
 
     public onTick: MulticastDelegate<() => void> = new MulticastDelegate<() => void>();
 
     public endPlay(): void {
-        // TODO: Stop tick
+        cancelAnimationFrame(this._requestAnimationFrameId);
 
         this.sendScore();
     }
@@ -85,6 +85,8 @@ export class Game {
     private _obstacles: Array<Obstacle> = [];
     private _floor: Floor;
     private _pawn: Pawn;
+
+    private _requestAnimationFrameId: number;
 
     private sendScore(): void {
 
