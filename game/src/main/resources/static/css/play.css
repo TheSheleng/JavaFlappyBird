@@ -29,7 +29,8 @@ body {
     width: 100%;
     height: 20%;
     background: linear-gradient(80deg, #32CD32, #228B22);
-    box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.5), 0 5px 10px rgba(0, 0, 0, 0.2), 0 3px 5px rgba(0, 0, 0, 0.1);  
+    box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.5), 0 5px 10px rgba(0, 0, 0, 0.2), 0 3px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;
 }
 
 .bird {
@@ -50,28 +51,28 @@ body {
 .pipe {
     position: absolute;
     width: 80px;
+    height: 10000px;
+    bottom: 0;
     left: 100px;
-    bottom: 265px;
     overflow: visible;
 }
 
-.pipe .trigger {
-    position: relative;
-    display: block;
-    width: 50px;
+.trigger {
+    position: absolute;
+    width: 80px;
     height: 100px;
+    bottom: 0;
+    left: 0;
     background: transparent;
     z-index: 10;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 .pipe-top {
     position: absolute;
+    top: 0;
     left: 0;
-    bottom: 100%;
     width: 100%;
-    height: 1000px;
+    bottom: 100px;
     background: linear-gradient(80deg, #32CD32, #228B22);
     border: 5px #228B22 solid;
     box-shadow: inset -5px -5px 10px rgba(255,255,255,0.5),
@@ -99,7 +100,8 @@ body {
     overflow: hidden;
 }
 
-.pipe-top::before, .pipe-bottom::before {
+.pipe-top::before,
+.pipe-bottom::before {
     content: '';
     position: absolute;
     width: 100%;

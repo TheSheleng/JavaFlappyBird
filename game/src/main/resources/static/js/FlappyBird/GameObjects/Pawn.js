@@ -1,15 +1,25 @@
 import { GameObject } from "./GameObject.js";
 export class Pawn extends GameObject {
-    constructor(game, location, fallSpeed, jumpImpulse) {
-        super(game, location);
-        this.fallSpeed = fallSpeed;
-        this.jumpImpulse = jumpImpulse;
+    constructor(game, settings) {
+        super(game, settings.initLocation, settings);
+        this.fallSpeed = settings.fallSpeed;
+        this.jumpImpulse = settings.jumpImpulse;
+        this.spritesUrls = settings.spritesUrls;
+        this.changeSpriteInterval = settings.changeSpriteInterval;
+        setInterval(() => this.nextSprite(), 200);
     }
     tick() {
+    }
+    nextSprite() {
+        this.currentSpriteIndex = (this.currentSpriteIndex + 1) % this.spritesUrls.length;
+        this.htmlElement.style.backgroundImage = `url(${this.spritesUrls[this.currentSpriteIndex]})`;
     }
     velocity = 0;
     fallSpeed;
     jumpImpulse;
     addImpulse() {
     }
+    spritesUrls;
+    changeSpriteInterval;
+    currentSpriteIndex = 0;
 }

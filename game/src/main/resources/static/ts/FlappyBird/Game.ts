@@ -3,29 +3,28 @@ import {Settings} from "./Settings.js";
 import {Obstacle} from "./GameObjects/Obstacle.js";
 import {Floor} from "./GameObjects/Floor.js";
 import {Pawn} from "./GameObjects/Pawn.js";
-import {GameObject} from "./GameObjects/GameObject.js";
 
 export class Game {
     public constructor(settings: Settings) {
         // Create the pawn
-        this._pawn = this.createPawn(settings.pawnInitLocation, settings.pawnFallSpeed, settings.pawnJumpImpulse);
+        this._pawn = new Pawn(this, settings.pawnSettings);
 
         // Create the floor
-        this._floor = this.createGameObject<Floor>(Floor, new Vector2D(0, 0));
+        this._floor = new Floor(this, new Vector2D(0, 0), settings.floorSettings);
 
         // Calculate location of the first obstacle (pawn's X location + pawn's width + distance between obstacles)
         const firstObstacleLocationX: number = this._pawn.location.x + this._pawn.size.x +
-            settings.distanceBetweenObstacles;
+            settings.obstaclesSettings.distanceBetweenObstacles;
 
         // Create the first obstacle to know its size
-        const firstObstacle: Obstacle = this.createObstacle(new Vector2D(firstObstacleLocationX, 0),
-            settings.obstaclesMoveSpeed);
+        const firstObstacle: Obstacle = new Obstacle(this, new Vector2D(firstObstacleLocationX, 0),
+            settings.obstaclesSettings);
 
         // Add the first obstacle to the list of obstacles
         this._obstacles.push(firstObstacle);
 
         // Total width covered by one obstacle including the distance between obstacles
-        const obstacleTotalWidth: number = firstObstacle.size.x + settings.distanceBetweenObstacles;
+        const obstacleTotalWidth: number = firstObstacle.size.x + settings.obstaclesSettings.distanceBetweenObstacles;
 
         // Total width of the screen plus two obstacles
         const screenWidthToFill: number = window.screen.width + 2 * obstacleTotalWidth;
@@ -43,8 +42,8 @@ export class Game {
             const nextObstacleLocation: number = this._obstacles[previousObstacleIndex].location.x + obstacleTotalWidth;
 
             // Create the nextObstacle
-            const nextObstacle: Obstacle = this.createObstacle(new Vector2D(nextObstacleLocation, 0),
-                settings.obstaclesMoveSpeed);
+            const nextObstacle: Obstacle = new Obstacle(this, new Vector2D(nextObstacleLocation, 0),
+                settings.obstaclesSettings)
 
             // Add the nextObstacle to the list of obstacles
             this._obstacles.push(nextObstacle);
@@ -52,6 +51,18 @@ export class Game {
 
         // Start the tick after all objects have been created
         this._requestAnimationFrameId = requestAnimationFrame(() => this.tick());
+    }
+
+    public get pawn(): Pawn {
+        return this._pawn;
+    }
+
+    public get obstacles(): Array<Obstacle> {
+        return this._obstacles;
+    }
+
+    public get floor(): Floor {
+        return this._floor;
     }
 
     public onTick: MulticastDelegate<() => void> = new MulticastDelegate<() => void>();
@@ -67,23 +78,9 @@ export class Game {
 
     private score: number = 0;
 
-    private createObstacle(location: Vector2D, obstacleMoveSpeed: number): Obstacle {
-        return new Obstacle(this, location, obstacleMoveSpeed);
-    }
-
-    private createPawn(location: Vector2D, fallSpeed: number, jumpImpulse: number): Pawn {
-        return new Pawn(this, location, fallSpeed, jumpImpulse);
-    }
-
-    private createGameObject<T extends GameObject>(
-        gameObjectConstructor: new (game: Game, location: Vector2D) => T, location: Vector2D
-    ) : T {
-        return new gameObjectConstructor(this, location);
-    }
-
-    private _obstacles: Array<Obstacle> = [];
-    private _floor: Floor;
     private _pawn: Pawn;
+    private _obstacles: Array<Obstacle> = [];
+    private readonly _floor: Floor;
 
     private readonly _requestAnimationFrameId: number;
 

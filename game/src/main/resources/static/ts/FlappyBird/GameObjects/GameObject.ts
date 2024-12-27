@@ -1,10 +1,17 @@
 ﻿import {Game} from "../Game.js";
 import {Vector2D} from "../SimpleTypes.js";
+import {HtmlElementSettings} from "../Settings";
 
 export class GameObject {
-    public constructor(game: Game, location: Vector2D) {
+    public constructor(game: Game, location: Vector2D, settings: HtmlElementSettings) {
         this.game = game;
+
+        this.htmlElement = document.createElement("div");
+        this.htmlElement.className = settings.htmlElementClassName;
+        settings.htmlElementParent.appendChild(this.htmlElement);
+
         this.location = location;
+        this.size = new Vector2D(this.htmlElement.offsetWidth, this.htmlElement.offsetHeight);
 
         this.game.onTick.add(() => {
             this.tick();
@@ -23,10 +30,8 @@ export class GameObject {
     public set location(newLocation: Vector2D) {
         this._location = newLocation;
 
-        if (this.htmlElement !== null) {
-            this.htmlElement.style.left = this.location.x + "px";
-            this.htmlElement.style.bottom = this.location.y + "px";
-        }
+        this.htmlElement.style.left = this.location.x + "px";
+        this.htmlElement.style.bottom = this.location.y + "px";
     }
 
     public get size(): Vector2D {
@@ -36,14 +41,13 @@ export class GameObject {
     public set size(newSize: Vector2D) {
         this._size = newSize;
 
-        if (this.htmlElement !== null) {
-            this.htmlElement.style.width = this.size.x + "px";
-        }
+        this.htmlElement.style.width = this.size.x + "px";
+        this.htmlElement.style.height = this.size.y + "px";
     }
 
     protected game: Game;
 
-    protected htmlElement: HTMLElement|null = null;
+    protected htmlElement: HTMLElement;
 
     protected tick(): void {}
 
