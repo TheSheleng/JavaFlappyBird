@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Menu</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/menu.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Main Menu</h1>
+        <div class="menu-options">
+            <button class="menu-btn" id="play-btn">Play</button>
+            <button class="menu-btn" id="leaderboard-btn">Leaderboard</button>
+            <button class="menu-btn" id="settings-btn">Settings</button>
+            <button class="menu-btn" id="about-btn">About</button>
+            <button class="menu-btn exit-btn" id="exit-btn">Exit</button>
+        </div>
+    </div>
+
+    <script src="/js/auth.js"></script>
+    <script>
+        function MenuPage() {
+            this.playBtn = document.getElementById('play-btn');
+            this.leaderboardBtn = document.getElementById('leaderboard-btn');
+            this.settingsBtn = document.getElementById('settings-btn');
+            this.aboutBtn = document.getElementById('about-btn');
+            this.exitBtn = document.getElementById('exit-btn');
+    
+            this.addEventListeners();
+        }
+        
+        MenuPage.prototype.navigateToPlay = function() {
+            window.location.href = 'play.html';
+        };
+        
+        MenuPage.prototype.navigateToLeaderboard = function() {
+            window.location.href = 'leaderboard.html';
+        };
+        
+        MenuPage.prototype.navigateToSettings = function() {
+            window.location.href = 'settings.html';
+        };
+        
+        MenuPage.prototype.navigateToAbout = function() {
+            window.location.href = 'about.html';
+        };
+        
+        MenuPage.prototype.exitGame = function() {
+            window.location.href = 'exit.html';
+        };
+        
+        MenuPage.prototype.addEventListeners = function() {
+            this.playBtn.addEventListener('click', this.navigateToPlay);
+            this.leaderboardBtn.addEventListener('click', this.navigateToLeaderboard);
+            this.settingsBtn.addEventListener('click', this.navigateToSettings);
+            this.aboutBtn.addEventListener('click', this.navigateToAbout);
+            this.exitBtn.addEventListener('click', this.exitGame);
+        };
+        
+        const menuPage = new MenuPage();
+    </script>
+</body>
+</html>

@@ -30,11 +30,8 @@ public class User {
     @Column(name = "email", nullable = false, length = 100, unique = true)
     private String email;
 
-    @Column(name = "password_hash", nullable = false, length = 255)
-    private String passwordHash;
-
-    @Column(name = "salt", nullable = false, length = 255)
-    private String salt;
+    @Column(name = "password", nullable = false, length = 255)
+    private String password;
 
     @Column(name = "avatar_url", length = 255)
     private String avatarUrl;
