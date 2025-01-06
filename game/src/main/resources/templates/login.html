@@ -28,11 +28,11 @@
                 </button>   
             </form>
         </div>
-    
+
         <div class="sign-up">
             <h1>Join the Fun!</h1>
             <p>Create an account to track your progress and play anytime & anywhere!</p>
-            <button class="sign-up-btn" id="sign-up-btn">
+            <a class="sign-up-btn" id="sign-up-btn" href="/auth/register">
                 <span>S</span>
                 <span>i</span>
                 <span>g</span>
@@ -40,10 +40,11 @@
                 <span>&nbsp;</span>
                 <span>U</span>
                 <span>p</span>
-            </button>
+            </a>
         </div>
     </div>
 
+    <script src="/js/auth.js"></script>
     <script>
         function LoginPage() {
             this.signUpBtn = document.getElementById('sign-up-btn');
