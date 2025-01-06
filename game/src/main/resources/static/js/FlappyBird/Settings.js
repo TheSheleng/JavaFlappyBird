@@ -17,9 +17,9 @@ export class PawnSettings extends HtmlElementSettings {
     fallSpeed = 0.2;
     jumpImpulse = 1;
     spritesUrls = [
-        "../images/birdMiddle.png",
-        "../images/birdUp.png",
-        "../images/birdDown.png"
+        "../static/images/birdMiddle.png",
+        "../static/images/birdUp.png",
+        "../static/images/birdDown.png"
     ];
     changeSpriteInterval = 200;
 }

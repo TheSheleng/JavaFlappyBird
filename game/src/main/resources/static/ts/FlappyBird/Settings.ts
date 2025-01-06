@@ -23,9 +23,9 @@ export class PawnSettings extends HtmlElementSettings{
     public jumpImpulse: number = 1;
 
     public spritesUrls: Array<string> = [
-        "../images/birdMiddle.png",
-        "../images/birdUp.png",
-        "../images/birdDown.png"
+        "../static/images/birdMiddle.png",
+        "../static/images/birdUp.png",
+        "../static/images/birdDown.png"
     ]
 
     public changeSpriteInterval: number = 200;
