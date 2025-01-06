@@ -37,6 +37,14 @@ export class Game {
         }
         // Start the tick after all objects have been created
         this._requestAnimationFrameId = requestAnimationFrame(this.tickCallback);
+        document.addEventListener("visibilitychange", () => {
+            if (document.visibilityState === "hidden") {
+                this.pause();
+            }
+            else {
+                this.resume();
+            }
+        });
     }
     get pawn() {
         return this._pawn;
@@ -58,8 +66,15 @@ export class Game {
         // Update the last frame time
         this.lastFrameTime = currentTime;
     };
-    endPlay() {
+    pause() {
         cancelAnimationFrame(this._requestAnimationFrameId);
+    }
+    resume() {
+        this.lastFrameTime = performance.now();
+        this._requestAnimationFrameId = requestAnimationFrame(this.tickCallback);
+    }
+    endPlay() {
+        this.pause();
         this.sendScore();
     }
     score = 0;

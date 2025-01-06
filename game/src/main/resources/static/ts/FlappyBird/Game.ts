@@ -56,6 +56,15 @@ export class Game {
 
         // Start the tick after all objects have been created
         this._requestAnimationFrameId = requestAnimationFrame(this.tickCallback);
+
+        document.addEventListener("visibilitychange", () => {
+            if (document.visibilityState === "hidden") {
+                this.pause();
+            }
+            else {
+                this.resume();
+            }
+        });
     }
 
     public get pawn(): Pawn {
@@ -87,8 +96,17 @@ export class Game {
         this.lastFrameTime = currentTime;
     };
 
-    public endPlay(): void {
+    private pause(): void {
         cancelAnimationFrame(this._requestAnimationFrameId);
+    }
+
+    private resume(): void {
+        this.lastFrameTime = performance.now();
+        this._requestAnimationFrameId = requestAnimationFrame(this.tickCallback);
+    }
+
+    public endPlay(): void {
+        this.pause();
 
         this.sendScore();
     }
