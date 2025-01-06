@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +7,22 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="../static/css/login.css">
+    <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
     <div class="container">
         <div class="sign-in">
             <h1>Ready to Fly?</h1>
             <p>Sign In and start your adventure!</p>
-            <form>
-                <input type="text" placeholder="Enter your username" required>
+
+            <div id="error-message" class="error-message" th:if="${errorMessage != null}">
+                <p id="error-text" style="color: red" th:text="${errorMessage}"></p>
+            </div>
+
+            <form action="/auth/login" method="POST">
+                <input type="text"  id="username" name="username" placeholder="Enter your username" required>
                 <div class="password-field">
-                    <input type="password" id="password" placeholder="Enter your password" required>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
                     <span class="toggle-password" onclick="togglePassword()">
                         <i class="fas fa-eye-slash"></i>
                     </span>
@@ -44,7 +49,6 @@
         </div>
     </div>
 
-    <script src="/js/auth.js"></script>
     <script>
         function LoginPage() {
             this.signUpBtn = document.getElementById('sign-up-btn');

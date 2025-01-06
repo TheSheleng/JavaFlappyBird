@@ -1,5 +1,5 @@
 ﻿export class MulticastDelegate<T extends (...args: any[]) => void> {
-    private listeners: Array<T> = new Array<T>();
+    private listeners: T[] = [];
 
     public add(listener: T) {
         this.listeners.push(listener);

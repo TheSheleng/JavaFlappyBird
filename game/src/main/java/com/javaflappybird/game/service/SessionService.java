@@ -19,22 +19,22 @@ public class SessionService {
         this.sessionRepository = sessionRepository;
     }
 
-    // Создание новой сессии
+    // Creating a new session
     public Session createSession(Session session) {
         return sessionRepository.save(session);
     }
 
-    // Получение всех сессий пользователя
+    // Get all user sessions
     public List<Session> getSessionsByUser(User user) {
         return sessionRepository.findByUser(user);
     }
 
-    // Получение сессии по ID
+    // Getting session by ID
     public Optional<Session> getSessionById(Integer sessionId) {
         return sessionRepository.findById(sessionId);
     }
 
-    // Удаление сессии
+    // Deleting a session
     public void deleteSession(Integer sessionId) {
         sessionRepository.deleteById(sessionId);
     }

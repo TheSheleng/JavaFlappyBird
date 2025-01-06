@@ -15,4 +15,14 @@ public class HomeController {
     public String menu() {
         return "menu";
     }
+
+    @GetMapping("/about")
+    public String about() {
+        return "about";
+    }
+
+    @GetMapping("/exit")
+    public String exit() {
+        return "exit";
+    }
 }

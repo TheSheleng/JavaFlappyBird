@@ -23,9 +23,9 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    // Регистрация пользователя
+    // User registration
     public void registerUser(String username, String email, String rawPassword) {
-        // Проверка существующего пользователя
+        // Checking an existing user
         if (userRepository.existsByUsername(username)) {
             throw new UserAlreadyExistsException("Username already taken");
         }
@@ -34,7 +34,7 @@ public class UserService {
             throw new UserAlreadyExistsException("Email already registered");
         }
 
-        // Пример простой проверки некорректных данных
+        // Example of a simple check for incorrect data
         if (username == null || username.trim().isEmpty()) {
             throw new InvalidDataException("Username cannot be empty");
         }
@@ -43,7 +43,7 @@ public class UserService {
             throw new InvalidDataException("Password must be at least 8 characters");
         }
 
-        // Создание пользователя с хэшированным паролем
+        // Create a user with an encrypted password
         User user = new User();
         user.setUsername(username);
         user.setEmail(email);
@@ -53,22 +53,22 @@ public class UserService {
         userRepository.save(user);
     }
 
-    // Получение пользователя по имени
+    // Getting a user by name
     public Optional<User> getUserByUsername(String username) {
         return Optional.ofNullable(userRepository.findByUsername(username));
     }
 
-    // Получение пользователя по email
+    // Getting user by email
     public Optional<User> getUserByEmail(String email) {
         return Optional.ofNullable(userRepository.findByEmail(email));
     }
 
-    // Получение пользователя по ID
+    // Getting user by ID
     public Optional<User> getUserById(Integer userId) {
         return userRepository.findById(userId);
     }
 
-    // Удаление пользователя
+    // Deleting a user
     public void deleteUser(Integer userId) {
         userRepository.deleteById(userId);
     }

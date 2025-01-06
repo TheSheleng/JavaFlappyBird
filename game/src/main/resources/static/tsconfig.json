@@ -2,13 +2,9 @@
   "compilerOptions": {
     "outDir": "./js",
     "rootDir": "./ts",
-    "target": "ESNext",
-    "module": "ESNext",
-    "strict": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowSyntheticDefaultImports": true
+    "target": "es5",
+    "module": "commonjs",
+    "strict": true
   },
   "include": [
     "ts/**/*"

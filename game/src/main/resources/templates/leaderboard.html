@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/leaderboard.css">
+    <link rel="stylesheet" href="/css/leaderboard.css">
 </head>
 <body>
     <div class="container">
@@ -77,7 +77,6 @@
         <button class="back-btn" id="back-btn">Back</button>
     </div>
 
-    <script src="/js/auth.js"></script>
     <script>
         function LeaderboardPage() {
             this.backBtn = document.getElementById('back-btn');

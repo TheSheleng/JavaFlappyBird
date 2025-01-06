@@ -10,10 +10,10 @@ import java.util.Date;
 @Component
 public class JwtProvider {
 
-    private static final SecretKey SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS512);; // Замените на ваш секретный ключ
-    private static final long EXPIRATION_TIME = 86400000; // Время жизни токена, например, 24 часа
+    private static final SecretKey SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS512);
+    private static final long EXPIRATION_TIME = 86400000; // NOTE: The token lifetime is, for example, 24 hours.
 
-    // Создание JWT токена
+    // Creating a JWT token
     public String generateToken(String username) {
         return Jwts.builder()
                 .setSubject(username)
@@ -23,7 +23,7 @@ public class JwtProvider {
                 .compact();
     }
 
-    // Извлечение имени пользователя из токена
+    // Extracting username from token
     public String getUsernameFromToken(String token) {
         return Jwts.parser()
                 .setSigningKey(SECRET_KEY)
@@ -32,16 +32,16 @@ public class JwtProvider {
                 .getSubject();
     }
 
-    // Проверка валидности токена
+    // Checking the validity of the token
     public boolean validateToken(String token) {
         try {
             Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
-            return true; // Токен валиден
+            return true; // The token is valid
         } catch (ExpiredJwtException e) {
-            // Токен истек
+            // Token expired
             return false;
         } catch (JwtException | IllegalArgumentException e) {
-            // Токен невалиден
+            // Token is invalid
             return false;
         }
     }

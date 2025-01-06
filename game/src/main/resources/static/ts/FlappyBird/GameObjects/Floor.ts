@@ -1,19 +1,11 @@
-﻿import {GameObject} from "./GameObject.js";
-import {Game} from "../Game.js";
-import {Vector2D} from "../SimpleTypes.js";
-import {FloorSettings} from "../Settings.js";
+﻿import {GameObject} from "./GameObject";
+import {Game} from "../Game";
+import {Vector2D} from "../SimpleTypes";
 
 export class Floor extends GameObject {
-    public constructor(game: Game, location: Vector2D, settings: FloorSettings) {
-        super(game, location, settings);
+    public constructor(game: Game, location: Vector2D) {
+        super(game, location);
 
-        this.size = new Vector2D(window.screen.width, settings.height);
-    }
-
-    protected tick(deltaTime: number) {
-        // End the game if the pawn is colliding with the floor
-        if (Floor.isColliding(this.htmlElement, this.game.pawn.htmlElement)) {
-            this.game.endPlay();
-        }
+        this.size.x = window.screen.width;
     }
 }
