@@ -3,51 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Registration Page</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../static/css/registration.css">
 </head>
 <body>
     <div class="container">
+        <div class="sign-up">
+            <h1>Back to Fly?</h1>
+            <p>Get back in the game with the chance to claim the top spot on the leaderboard!</p>
+            <button class="sign-in-btn" id="sign-in-btn">
+                <span>S</span>
+                <span>i</span>
+                <span>g</span>
+                <span>n</span>
+                <span>&nbsp;</span>
+                <span>I</span>
+                <span>n</span>
+            </button>
+        </div>
+            
         <div class="sign-in">
-            <h1>Ready to Fly?</h1>
-            <p>Sign In and start your adventure!</p>
+            <h1>Fun is comming!</h1>
+            <p>Just a few steps away from turning your journey into an epic adventure!</p>
             <form>
                 <input type="text" placeholder="Enter your username" required>
+                <input type="email" placeholder="Enter your email" required>
                 <div class="password-field">
                     <input type="password" id="password" placeholder="Enter your password" required>
                     <span class="toggle-password" onclick="togglePassword()">
                         <i class="fas fa-eye-slash"></i>
                     </span>
                 </div>
-                <button class="sign-in-btn" id="sign-in-btn" type="submit">Sign In</button>
-                <button class="sign-in-btn" id="sign-in-btn-google" type="submit">
-                    Sign In with <i class="fab fa-google" style="margin-left: 10px; font-weight: bold;"></i>
+                <button class="sign-up-btn" type="submit">Sign Up</button>
+                <button class="sign-up-btn" type="submit" id="sign-up-btn-google">
+                    Sign Up with <i class="fab fa-google" style="margin-left: 10px; font-weight: bold;"></i>
                 </button>   
             </form>
-        </div>
-    
-        <div class="sign-up">
-            <h1>Join the Fun!</h1>
-            <p>Create an account to track your progress and play anytime & anywhere!</p>
-            <button class="sign-up-btn" id="sign-up-btn">
-                <span>S</span>
-                <span>i</span>
-                <span>g</span>
-                <span>n</span>
-                <span>&nbsp;</span>
-                <span>U</span>
-                <span>p</span>
-            </button>
         </div>
     </div>
 
     <script>
-        function LoginPage() {
-            this.signUpBtn = document.getElementById('sign-up-btn');
+        function RegistrationPage() {
             this.signIpBtn = document.getElementById('sign-in-btn');
+            this.signUpBtn = document.getElementById('sign-up-btn');
     
             this.addEventListeners();
         }
@@ -62,21 +63,21 @@
             toggleIcon.classList.toggle('fa-eye-slash');
         }
     
-        LoginPage.prototype.navigateToRegistration = function() {
-            window.location.href = 'registration.html';
+        RegistrationPage.prototype.navigateToLogin = function() {
+            window.location.href = 'login.html';
         };
     
         // temp solution
-        LoginPage.prototype.navigateToMenu = function() {
+        RegistrationPage.prototype.navigateToMenu = function() {
             window.location.href = 'menu.html';
         };
     
-        LoginPage.prototype.addEventListeners = function() {
-            this.signUpBtn.addEventListener('click', this.navigateToRegistration);
-            this.signIpBtn.addEventListener('click', this.navigateToMenu);
+        RegistrationPage.prototype.addEventListeners = function() {
+            this.signIpBtn.addEventListener('click', this.navigateToLogin);
+            this.signUpBtn.addEventListener('click', this.navigateToMenu);
         };
     
-        const loginPage = new LoginPage();
+        const registrationPage = new RegistrationPage();
     </script>
 </body>
 </html>
