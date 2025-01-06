@@ -15,7 +15,7 @@ export class Trigger extends GameObject {
 
     public onPawnOverlap: MulticastDelegate<() => void> = new MulticastDelegate<() => void>();
 
-    protected tick() {
+    protected tick(deltaTime: number) {
 
     }
 }

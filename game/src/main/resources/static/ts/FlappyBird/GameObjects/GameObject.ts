@@ -13,8 +13,8 @@ export class GameObject {
         this.location = location;
         this.size = new Vector2D(this.htmlElement.offsetWidth, this.htmlElement.offsetHeight);
 
-        this.game.onTick.add(() => {
-            this.tick();
+        this.game.onTick.add((deltaTime: number) => {
+            this.tick(deltaTime);
         });
     }
 
@@ -49,7 +49,7 @@ export class GameObject {
 
     protected htmlElement: HTMLElement;
 
-    protected tick(): void {}
+    protected tick(deltaTime: number): void {}
 
     private _location: Vector2D = new Vector2D();
     private _size: Vector2D = new Vector2D();

@@ -15,7 +15,7 @@ export class Pawn extends GameObject {
         setInterval(() => this.nextSprite(), 200);
     }
 
-    protected tick() {
+    protected tick(deltaTime: number) {
 
     }
 

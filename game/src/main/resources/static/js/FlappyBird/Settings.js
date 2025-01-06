@@ -51,7 +51,7 @@ export class ObstaclesSettings extends HtmlElementSettings {
         this.htmlElementClassName = "pipe";
     }
     distanceBetweenObstacles = 500;
-    moveSpeed = 0.1;
+    moveSpeed = 200;
     size = new Vector2D(80, 10000);
     maxDistanceToFloorBottomAndScreenTop = 50;
     obstacleTopSettings = new ObstacleTopSettings();

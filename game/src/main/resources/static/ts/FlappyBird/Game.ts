@@ -12,8 +12,10 @@ export class Game {
         // Create the floor
         this._floor = new Floor(this, new Vector2D(0, 0), settings.floorSettings);
 
+        const pawnXLocationPlusWidth: number = this._pawn.location.x + this._pawn.size.x;
+
         // Calculate location of the first obstacle (pawn's X location + pawn's width + distance between obstacles)
-        const firstObstacleLocationX: number = this._pawn.location.x + this._pawn.size.x +
+        const firstObstacleLocationX: number = pawnXLocationPlusWidth +
             settings.obstaclesSettings.distanceBetweenObstacles;
 
         // Create the first obstacle to know its size
@@ -24,13 +26,16 @@ export class Game {
         this._obstacles.push(firstObstacle);
 
         // Total width covered by one obstacle including the distance between obstacles
-        const obstacleTotalWidth: number = firstObstacle.size.x + settings.obstaclesSettings.distanceBetweenObstacles;
+        const obstacleTotalWidth: number = settings.obstaclesSettings.distanceBetweenObstacles + firstObstacle.size.x;
 
-        // Total width of the screen plus two obstacles
-        const screenWidthToFill: number = window.screen.width + 2 * obstacleTotalWidth;
+        /**
+         * Total width of the screen + 1 obstacle - distance to the end of the pawn (distance to the first obstacle is
+         * counted from the pawn).
+         */
+        const screenWidthToFill: number = window.screen.availWidth + obstacleTotalWidth - pawnXLocationPlusWidth;
 
-        // Amount of obstacles to fill the screen
-        const amountOfObstacles: number = Math.ceil(screenWidthToFill / obstacleTotalWidth);
+        // Amount of obstacles to fill the screen minus 1 because the first obstacle is already created
+        const amountOfObstacles: number = Math.ceil(screenWidthToFill / obstacleTotalWidth) - 1;
 
         // Create the rest of the obstacles (all except the first one)
         for (
@@ -50,7 +55,7 @@ export class Game {
         }
 
         // Start the tick after all objects have been created
-        this._requestAnimationFrameId = requestAnimationFrame(() => this.tick());
+        this._requestAnimationFrameId = requestAnimationFrame(this.tickCallback);
     }
 
     public get pawn(): Pawn {
@@ -65,24 +70,40 @@ export class Game {
         return this._floor;
     }
 
-    public onTick: MulticastDelegate<() => void> = new MulticastDelegate<() => void>();
+    private lastFrameTime: number = 0;
+
+    private readonly tickCallback: FrameRequestCallback = (currentTime: DOMHighResTimeStamp) => {
+        // Calculate the time since the last frame in seconds
+        const deltaTime: number = (currentTime - this.lastFrameTime) / 1000;
+
+        this.tick(deltaTime);
+
+        // Update the last frame time
+        this.lastFrameTime = currentTime;
+    };
+
+    public onTick: MulticastDelegate<(deltaTime: number) => void> = new MulticastDelegate<() => void>();
+
+    protected tick(deltaTime: number): void {
+        this.onTick.broadcast(deltaTime);
+
+        // Request the next tick
+        this._requestAnimationFrameId = requestAnimationFrame(this.tickCallback);
+    }
 
     public endPlay(): void {
         cancelAnimationFrame(this._requestAnimationFrameId);
-    }
 
-    protected tick(): void {
         this.sendScore();
-        this.onTick.broadcast();
     }
 
     private score: number = 0;
 
-    private _pawn: Pawn;
+    private readonly _pawn: Pawn;
     private _obstacles: Array<Obstacle> = [];
     private readonly _floor: Floor;
 
-    private readonly _requestAnimationFrameId: number;
+    private _requestAnimationFrameId: number;
 
     private sendScore(): void {
 

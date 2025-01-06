@@ -9,19 +9,23 @@ export class Game {
         this._pawn = new Pawn(this, settings.pawnSettings);
         // Create the floor
         this._floor = new Floor(this, new Vector2D(0, 0), settings.floorSettings);
+        const pawnXLocationPlusWidth = this._pawn.location.x + this._pawn.size.x;
         // Calculate location of the first obstacle (pawn's X location + pawn's width + distance between obstacles)
-        const firstObstacleLocationX = this._pawn.location.x + this._pawn.size.x +
+        const firstObstacleLocationX = pawnXLocationPlusWidth +
             settings.obstaclesSettings.distanceBetweenObstacles;
         // Create the first obstacle to know its size
         const firstObstacle = new Obstacle(this, new Vector2D(firstObstacleLocationX, 0), settings.obstaclesSettings);
         // Add the first obstacle to the list of obstacles
         this._obstacles.push(firstObstacle);
         // Total width covered by one obstacle including the distance between obstacles
-        const obstacleTotalWidth = firstObstacle.size.x + settings.obstaclesSettings.distanceBetweenObstacles;
-        // Total width of the screen plus two obstacles
-        const screenWidthToFill = window.screen.width + 2 * obstacleTotalWidth;
-        // Amount of obstacles to fill the screen
-        const amountOfObstacles = Math.ceil(screenWidthToFill / obstacleTotalWidth);
+        const obstacleTotalWidth = settings.obstaclesSettings.distanceBetweenObstacles + firstObstacle.size.x;
+        /**
+         * Total width of the screen + 1 obstacle - distance to the end of the pawn (distance to the first obstacle is
+         * counted from the pawn).
+         */
+        const screenWidthToFill = window.screen.availWidth + obstacleTotalWidth - pawnXLocationPlusWidth;
+        // Amount of obstacles to fill the screen minus 1 because the first obstacle is already created
+        const amountOfObstacles = Math.ceil(screenWidthToFill / obstacleTotalWidth) - 1;
         // Create the rest of the obstacles (all except the first one)
         for (let previousObstacleIndex = 0; previousObstacleIndex < amountOfObstacles - 1; ++previousObstacleIndex) {
             // Calculate the next obstacle's location
@@ -32,7 +36,7 @@ export class Game {
             this._obstacles.push(nextObstacle);
         }
         // Start the tick after all objects have been created
-        this._requestAnimationFrameId = requestAnimationFrame(() => this.tick());
+        this._requestAnimationFrameId = requestAnimationFrame(this.tickCallback);
     }
     get pawn() {
         return this._pawn;
@@ -43,13 +47,23 @@ export class Game {
     get floor() {
         return this._floor;
     }
+    lastFrameTime = 0;
+    tickCallback = (currentTime) => {
+        // Calculate the time since the last frame in seconds
+        const deltaTime = (currentTime - this.lastFrameTime) / 1000;
+        this.tick(deltaTime);
+        // Update the last frame time
+        this.lastFrameTime = currentTime;
+    };
     onTick = new MulticastDelegate();
+    tick(deltaTime) {
+        this.onTick.broadcast(deltaTime);
+        // Request the next tick
+        this._requestAnimationFrameId = requestAnimationFrame(this.tickCallback);
+    }
     endPlay() {
         cancelAnimationFrame(this._requestAnimationFrameId);
-    }
-    tick() {
         this.sendScore();
-        this.onTick.broadcast();
     }
     score = 0;
     _pawn;

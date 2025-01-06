@@ -1,5 +1,5 @@
 export class MulticastDelegate {
-    listeners = [];
+    listeners = new Array();
     add(listener) {
         this.listeners.push(listener);
     }

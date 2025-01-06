@@ -68,7 +68,7 @@ export class ObstaclesSettings extends HtmlElementSettings {
     }
 
     public distanceBetweenObstacles: number = 500;
-    public moveSpeed: number = 0.1;
+    public moveSpeed: number = 200;
     public size: Vector2D = new Vector2D(80, 10000);
     public maxDistanceToFloorBottomAndScreenTop: number = 50;
 

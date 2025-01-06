@@ -7,8 +7,8 @@ export class GameObject {
         settings.htmlElementParent.appendChild(this.htmlElement);
         this.location = location;
         this.size = new Vector2D(this.htmlElement.offsetWidth, this.htmlElement.offsetHeight);
-        this.game.onTick.add(() => {
-            this.tick();
+        this.game.onTick.add((deltaTime) => {
+            this.tick(deltaTime);
         });
     }
     static isColliding(object1, object2) {
@@ -33,7 +33,7 @@ export class GameObject {
     }
     game;
     htmlElement;
-    tick() { }
+    tick(deltaTime) { }
     _location = new Vector2D();
     _size = new Vector2D();
 }

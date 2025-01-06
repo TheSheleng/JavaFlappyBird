@@ -8,6 +8,6 @@ export class Trigger extends GameObject {
         this.location = new Vector2D(settings.htmlElementParent.offsetWidth / 2 - this.size.x / 2, this.location.y);
     }
     onPawnOverlap = new MulticastDelegate();
-    tick() {
+    tick(deltaTime) {
     }
 }

@@ -8,7 +8,7 @@ export class Pawn extends GameObject {
         this.changeSpriteInterval = settings.changeSpriteInterval;
         setInterval(() => this.nextSprite(), 200);
     }
-    tick() {
+    tick(deltaTime) {
     }
     nextSprite() {
         this.currentSpriteIndex = (this.currentSpriteIndex + 1) % this.spritesUrls.length;

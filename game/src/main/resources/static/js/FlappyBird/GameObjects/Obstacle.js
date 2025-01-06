@@ -5,6 +5,7 @@ export class Obstacle extends GameObject {
     constructor(game, location, settings) {
         super(game, location, settings);
         this.moveSpeed = settings.moveSpeed;
+        this.distanceBetweenObstacles = settings.distanceBetweenObstacles;
         this.size = settings.size;
         // We need to attach the top and bottom parts to this obstacle
         settings.obstacleTopSettings.htmlElementParent = this.htmlElement;
@@ -22,6 +23,7 @@ export class Obstacle extends GameObject {
         this.maxYLocation = Math.floor(window.innerHeight - this.trigger.size.y -
             settings.maxDistanceToFloorBottomAndScreenTop);
         this.randomizeYLocation();
+        Obstacle.lastObstacle = this;
     }
     get location() {
         return super.location;
@@ -29,9 +31,18 @@ export class Obstacle extends GameObject {
     set location(newLocation) {
         super.location = newLocation;
     }
-    tick() {
+    tick(deltaTime) {
+        this.location = new Vector2D(this.location.x - this.moveSpeed * deltaTime, this.location.y);
+        if (this.location.x + this.size.x < 0) {
+            const newLocationX = Obstacle.lastObstacle.location.x + Obstacle.lastObstacle.size.x +
+                this.distanceBetweenObstacles;
+            this.location = new Vector2D(newLocationX, this.location.y);
+            this.randomizeYLocation();
+            Obstacle.lastObstacle = this;
+        }
     }
     moveSpeed;
+    distanceBetweenObstacles;
     minYLocation;
     maxYLocation;
     randomizeYLocation() {
@@ -45,4 +56,5 @@ export class Obstacle extends GameObject {
     trigger;
     onTriggerPawnOverlap() {
     }
+    static lastObstacle;
 }

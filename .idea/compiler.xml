@@ -19,4 +19,7 @@
       <module name="Backend (2)" options="-parameters" />
     </option>
   </component>
+  <component name="TypeScriptCompiler">
+    <option name="recompileOnChanges" value="true" />
+  </component>
 </project>
