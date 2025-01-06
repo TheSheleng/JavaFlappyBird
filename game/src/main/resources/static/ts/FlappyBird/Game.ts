@@ -72,24 +72,20 @@ export class Game {
 
     private lastFrameTime: number = 0;
 
+    public onTick: MulticastDelegate<(deltaTime: number) => void> = new MulticastDelegate<() => void>();
+
     private readonly tickCallback: FrameRequestCallback = (currentTime: DOMHighResTimeStamp) => {
         // Calculate the time since the last frame in seconds
         const deltaTime: number = (currentTime - this.lastFrameTime) / 1000;
 
-        this.tick(deltaTime);
-
-        // Update the last frame time
-        this.lastFrameTime = currentTime;
-    };
-
-    public onTick: MulticastDelegate<(deltaTime: number) => void> = new MulticastDelegate<() => void>();
-
-    protected tick(deltaTime: number): void {
         this.onTick.broadcast(deltaTime);
 
         // Request the next tick
         this._requestAnimationFrameId = requestAnimationFrame(this.tickCallback);
-    }
+
+        // Update the last frame time
+        this.lastFrameTime = currentTime;
+    };
 
     public endPlay(): void {
         cancelAnimationFrame(this._requestAnimationFrameId);

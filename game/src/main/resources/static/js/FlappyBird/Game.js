@@ -48,19 +48,16 @@ export class Game {
         return this._floor;
     }
     lastFrameTime = 0;
+    onTick = new MulticastDelegate();
     tickCallback = (currentTime) => {
         // Calculate the time since the last frame in seconds
         const deltaTime = (currentTime - this.lastFrameTime) / 1000;
-        this.tick(deltaTime);
-        // Update the last frame time
-        this.lastFrameTime = currentTime;
-    };
-    onTick = new MulticastDelegate();
-    tick(deltaTime) {
         this.onTick.broadcast(deltaTime);
         // Request the next tick
         this._requestAnimationFrameId = requestAnimationFrame(this.tickCallback);
-    }
+        // Update the last frame time
+        this.lastFrameTime = currentTime;
+    };
     endPlay() {
         cancelAnimationFrame(this._requestAnimationFrameId);
         this.sendScore();

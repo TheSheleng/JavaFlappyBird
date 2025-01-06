@@ -52,8 +52,8 @@ body {
     position: absolute;
     width: 80px;
     height: 10000px;
+    left: 0;
     bottom: 0;
-    left: 100px;
     overflow: visible;
 }
 
@@ -61,8 +61,8 @@ body {
     position: absolute;
     width: 80px;
     height: 100px;
-    bottom: 0;
     left: 0;
+    bottom: 0;
     background: transparent;
     z-index: 10;
 }

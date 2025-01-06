@@ -30,8 +30,8 @@ export class GameObject {
     public set location(newLocation: Vector2D) {
         this._location = newLocation;
 
-        this.htmlElement.style.left = this.location.x + "px";
-        this.htmlElement.style.bottom = this.location.y + "px";
+        // translate3d uses GPU which improves performance a lot
+        this.htmlElement.style.transform = `translate3d(${this._location.x}px, ${-this._location.y}px, 0)`;
     }
 
     public get size(): Vector2D {
