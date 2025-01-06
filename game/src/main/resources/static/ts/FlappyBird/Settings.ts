@@ -19,14 +19,17 @@ export class PawnSettings extends HtmlElementSettings{
     }
 
     public initLocation: Vector2D = new Vector2D(100, 350);
-    public fallSpeed: number = 0.2;
-    public jumpImpulse: number = 1;
+    public gravity: number = 9.80665;
+    public jumpImpulse: number = 3.5;
 
     public spritesUrls: Array<string> = [
         "../static/images/birdMiddle.png",
         "../static/images/birdUp.png",
         "../static/images/birdDown.png"
     ]
+
+    public maxFallRotation: number = 30;
+    public velocityForMaxFallRotation: number = this.jumpImpulse;
 
     public changeSpriteInterval: number = 200;
 }

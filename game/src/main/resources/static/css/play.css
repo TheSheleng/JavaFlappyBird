@@ -35,8 +35,8 @@ body {
 
 .bird {
     position: absolute;
-    width: 50px; 
-    height: 50px;
+    width: 50px;
+    height: 35px;
     left: 0;
     bottom: 250px;
     background: url('../images/birdMiddle.png') no-repeat center / contain;
@@ -76,11 +76,11 @@ body {
     background: linear-gradient(80deg, #32CD32, #228B22);
     border: 5px #228B22 solid;
     box-shadow: inset -5px -5px 10px rgba(255,255,255,0.5),
-    inset 5px 5px 10px rgba(0,0,0,0.5),
-    0 5px 10px rgba(0,0,0,0.5),
-    0 20px 30px rgba(0,0,0,0.5);
+        inset 5px 5px 10px rgba(0,0,0,0.5),
+        0 5px 10px rgba(0,0,0,0.5),
+        0 20px 30px rgba(0,0,0,0.5);
     transform: rotate(180deg);
-    border-radius: 20px 20px 0 0;
+    border-radius: 5px 5px 0 0;
     overflow: hidden;
 }
 
@@ -93,10 +93,10 @@ body {
     background: linear-gradient(80deg, #32CD32, #228B22);
     border: 5px #228B22 solid;
     box-shadow: inset -5px -5px 10px rgba(255,255,255,0.5),
-    inset 5px 5px 10px rgba(0,0,0,0.5),
-    0 5px 10px rgba(0,0,0,0.5),
-    0 20px 30px rgba(0,0,0,0.5);
-    border-radius: 20px 20px 0 0;
+        inset 5px 5px 10px rgba(0,0,0,0.5),
+        0 5px 10px rgba(0,0,0,0.5),
+        0 20px 30px rgba(0,0,0,0.5);
+    border-radius: 5px 5px 0 0;
     overflow: hidden;
 }
 

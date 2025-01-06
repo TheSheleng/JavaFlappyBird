@@ -22,7 +22,7 @@ export class Game {
         const firstObstacle: Obstacle = new Obstacle(this, new Vector2D(firstObstacleLocationX, 0),
             settings.obstaclesSettings);
 
-        // Subscribe to the trigger's onPawnOverlap event to update the score
+        // Subscribe to the trigger's onPawnOverlap event to update the _score
         firstObstacle.trigger.onPawnOverlap.add(() => this.updateScore());
 
         // Add the first obstacle to the list of obstacles
@@ -53,7 +53,7 @@ export class Game {
             const nextObstacle: Obstacle = new Obstacle(this, new Vector2D(nextObstacleLocation, 0),
                 settings.obstaclesSettings);
 
-            // Subscribe to the trigger's onPawnOverlap event to update the score
+            // Subscribe to the trigger's onPawnOverlap event to update the _score
             nextObstacle.trigger.onPawnOverlap.add(() => this.updateScore());
 
             // Add the nextObstacle to the list of obstacles
@@ -93,12 +93,16 @@ export class Game {
         this.sendScore();
     }
 
+    public get score(): number {
+        return this._score;
+    }
+
     public get isPaused(): boolean {
         return this._isPaused;
     }
 
     private updateScore(): void {
-        ++this.score;
+        ++this._score;
     }
 
     private lastFrameTime: number = 0;
@@ -131,7 +135,7 @@ export class Game {
         this._requestAnimationFrameId = requestAnimationFrame(this.tickCallback);
     }
 
-    private score: number = 0;
+    private _score: number = 0;
 
     private readonly _pawn: Pawn;
     private _obstacles: Array<Obstacle> = [];
@@ -142,7 +146,7 @@ export class Game {
     private _isPaused: boolean = false;
 
     private sendScore(): void {
-
+        // TODO: Implement sending the score to the server
     }
 }
 

@@ -15,7 +15,7 @@ export class Game {
             settings.obstaclesSettings.distanceBetweenObstacles;
         // Create the first obstacle to know its size
         const firstObstacle = new Obstacle(this, new Vector2D(firstObstacleLocationX, 0), settings.obstaclesSettings);
-        // Subscribe to the trigger's onPawnOverlap event to update the score
+        // Subscribe to the trigger's onPawnOverlap event to update the _score
         firstObstacle.trigger.onPawnOverlap.add(() => this.updateScore());
         // Add the first obstacle to the list of obstacles
         this._obstacles.push(firstObstacle);
@@ -34,7 +34,7 @@ export class Game {
             const nextObstacleLocation = this._obstacles[previousObstacleIndex].location.x + obstacleTotalWidth;
             // Create the nextObstacle
             const nextObstacle = new Obstacle(this, new Vector2D(nextObstacleLocation, 0), settings.obstaclesSettings);
-            // Subscribe to the trigger's onPawnOverlap event to update the score
+            // Subscribe to the trigger's onPawnOverlap event to update the _score
             nextObstacle.trigger.onPawnOverlap.add(() => this.updateScore());
             // Add the nextObstacle to the list of obstacles
             this._obstacles.push(nextObstacle);
@@ -64,11 +64,14 @@ export class Game {
         this.pause();
         this.sendScore();
     }
+    get score() {
+        return this._score;
+    }
     get isPaused() {
         return this._isPaused;
     }
     updateScore() {
-        ++this.score;
+        ++this._score;
     }
     lastFrameTime = 0;
     tickCallback = (currentTime) => {
@@ -91,13 +94,14 @@ export class Game {
         this.lastFrameTime = performance.now();
         this._requestAnimationFrameId = requestAnimationFrame(this.tickCallback);
     }
-    score = 0;
+    _score = 0;
     _pawn;
     _obstacles = [];
     _floor;
     _requestAnimationFrameId;
     _isPaused = false;
     sendScore() {
+        // TODO: Implement sending the score to the server
     }
 }
 new Game(new Settings());

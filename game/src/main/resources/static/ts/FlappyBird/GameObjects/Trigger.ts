@@ -16,15 +16,18 @@ export class Trigger extends GameObject {
     public onPawnOverlap: MulticastDelegate<() => void> = new MulticastDelegate<() => void>();
 
     protected tick(deltaTime: number) {
+        // Check if the pawn is colliding with the trigger
         const isCollidingWithPawn: boolean = GameObject.isColliding(this.htmlElement, this.game.pawn.htmlElement);
 
+        // Broadcast the event if the pawn is colliding with the trigger and wasn't colliding with it last tick
         if (isCollidingWithPawn && !this._wasCollidingWithPawnLastTick) {
             this.onPawnOverlap.broadcast();
-            this._wasCollidingWithPawnLastTick = true;
 
-            console.log("Triggered");
+            // Remember that the pawn was colliding with the trigger
+            this._wasCollidingWithPawnLastTick = true;
         }
-        else if (!isCollidingWithPawn && this._wasCollidingWithPawnLastTick) {
+        // Remember that the pawn wasn't colliding with the trigger otherwise
+        else {
             this._wasCollidingWithPawnLastTick = false;
         }
     }
