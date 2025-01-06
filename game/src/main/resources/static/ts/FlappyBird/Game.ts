@@ -22,6 +22,9 @@ export class Game {
         const firstObstacle: Obstacle = new Obstacle(this, new Vector2D(firstObstacleLocationX, 0),
             settings.obstaclesSettings);
 
+        // Subscribe to the trigger's onPawnOverlap event to update the score
+        firstObstacle.trigger.onPawnOverlap.add(() => this.updateScore());
+
         // Add the first obstacle to the list of obstacles
         this._obstacles.push(firstObstacle);
 
@@ -34,13 +37,13 @@ export class Game {
          */
         const screenWidthToFill: number = window.screen.availWidth + obstacleTotalWidth - pawnXLocationPlusWidth;
 
-        // Amount of obstacles to fill the screen minus 1 because the first obstacle is already created
-        const amountOfObstacles: number = Math.ceil(screenWidthToFill / obstacleTotalWidth) - 1;
+        // Amount of obstacles to fill the screen
+        const amountOfObstacles: number = Math.ceil(screenWidthToFill / obstacleTotalWidth);
 
         // Create the rest of the obstacles (all except the first one)
         for (
             let previousObstacleIndex: number = 0;
-            previousObstacleIndex < amountOfObstacles - 1;
+            previousObstacleIndex < amountOfObstacles - 2;
             ++previousObstacleIndex
         ) {
             // Calculate the next obstacle's location
@@ -48,7 +51,10 @@ export class Game {
 
             // Create the nextObstacle
             const nextObstacle: Obstacle = new Obstacle(this, new Vector2D(nextObstacleLocation, 0),
-                settings.obstaclesSettings)
+                settings.obstaclesSettings);
+
+            // Subscribe to the trigger's onPawnOverlap event to update the score
+            nextObstacle.trigger.onPawnOverlap.add(() => this.updateScore());
 
             // Add the nextObstacle to the list of obstacles
             this._obstacles.push(nextObstacle);
@@ -79,9 +85,23 @@ export class Game {
         return this._floor;
     }
 
-    private lastFrameTime: number = 0;
-
     public onTick: MulticastDelegate<(deltaTime: number) => void> = new MulticastDelegate<() => void>();
+
+    public endPlay(): void {
+        this.pause();
+
+        this.sendScore();
+    }
+
+    public get isPaused(): boolean {
+        return this._isPaused;
+    }
+
+    private updateScore(): void {
+        ++this.score;
+    }
+
+    private lastFrameTime: number = 0;
 
     private readonly tickCallback: FrameRequestCallback = (currentTime: DOMHighResTimeStamp) => {
         // Calculate the time since the last frame in seconds
@@ -89,26 +109,26 @@ export class Game {
 
         this.onTick.broadcast(deltaTime);
 
-        // Request the next tick
-        this._requestAnimationFrameId = requestAnimationFrame(this.tickCallback);
-
         // Update the last frame time
         this.lastFrameTime = currentTime;
+
+        // Request the next tick but only if the game is not paused
+        if (!this.isPaused) {
+            this._requestAnimationFrameId = requestAnimationFrame(this.tickCallback);
+        }
     };
 
     private pause(): void {
         cancelAnimationFrame(this._requestAnimationFrameId);
+
+        this._isPaused = true;
     }
 
     private resume(): void {
+        this._isPaused = false;
+
         this.lastFrameTime = performance.now();
         this._requestAnimationFrameId = requestAnimationFrame(this.tickCallback);
-    }
-
-    public endPlay(): void {
-        this.pause();
-
-        this.sendScore();
     }
 
     private score: number = 0;
@@ -118,6 +138,8 @@ export class Game {
     private readonly _floor: Floor;
 
     private _requestAnimationFrameId: number;
+
+    private _isPaused: boolean = false;
 
     private sendScore(): void {
 

@@ -15,6 +15,8 @@ export class Game {
             settings.obstaclesSettings.distanceBetweenObstacles;
         // Create the first obstacle to know its size
         const firstObstacle = new Obstacle(this, new Vector2D(firstObstacleLocationX, 0), settings.obstaclesSettings);
+        // Subscribe to the trigger's onPawnOverlap event to update the score
+        firstObstacle.trigger.onPawnOverlap.add(() => this.updateScore());
         // Add the first obstacle to the list of obstacles
         this._obstacles.push(firstObstacle);
         // Total width covered by one obstacle including the distance between obstacles
@@ -24,14 +26,16 @@ export class Game {
          * counted from the pawn).
          */
         const screenWidthToFill = window.screen.availWidth + obstacleTotalWidth - pawnXLocationPlusWidth;
-        // Amount of obstacles to fill the screen minus 1 because the first obstacle is already created
-        const amountOfObstacles = Math.ceil(screenWidthToFill / obstacleTotalWidth) - 1;
+        // Amount of obstacles to fill the screen
+        const amountOfObstacles = Math.ceil(screenWidthToFill / obstacleTotalWidth);
         // Create the rest of the obstacles (all except the first one)
-        for (let previousObstacleIndex = 0; previousObstacleIndex < amountOfObstacles - 1; ++previousObstacleIndex) {
+        for (let previousObstacleIndex = 0; previousObstacleIndex < amountOfObstacles - 2; ++previousObstacleIndex) {
             // Calculate the next obstacle's location
             const nextObstacleLocation = this._obstacles[previousObstacleIndex].location.x + obstacleTotalWidth;
             // Create the nextObstacle
             const nextObstacle = new Obstacle(this, new Vector2D(nextObstacleLocation, 0), settings.obstaclesSettings);
+            // Subscribe to the trigger's onPawnOverlap event to update the score
+            nextObstacle.trigger.onPawnOverlap.add(() => this.updateScore());
             // Add the nextObstacle to the list of obstacles
             this._obstacles.push(nextObstacle);
         }
@@ -55,33 +59,44 @@ export class Game {
     get floor() {
         return this._floor;
     }
-    lastFrameTime = 0;
     onTick = new MulticastDelegate();
+    endPlay() {
+        this.pause();
+        this.sendScore();
+    }
+    get isPaused() {
+        return this._isPaused;
+    }
+    updateScore() {
+        ++this.score;
+    }
+    lastFrameTime = 0;
     tickCallback = (currentTime) => {
         // Calculate the time since the last frame in seconds
         const deltaTime = (currentTime - this.lastFrameTime) / 1000;
         this.onTick.broadcast(deltaTime);
-        // Request the next tick
-        this._requestAnimationFrameId = requestAnimationFrame(this.tickCallback);
         // Update the last frame time
         this.lastFrameTime = currentTime;
+        // Request the next tick but only if the game is not paused
+        if (!this.isPaused) {
+            this._requestAnimationFrameId = requestAnimationFrame(this.tickCallback);
+        }
     };
     pause() {
         cancelAnimationFrame(this._requestAnimationFrameId);
+        this._isPaused = true;
     }
     resume() {
+        this._isPaused = false;
         this.lastFrameTime = performance.now();
         this._requestAnimationFrameId = requestAnimationFrame(this.tickCallback);
-    }
-    endPlay() {
-        this.pause();
-        this.sendScore();
     }
     score = 0;
     _pawn;
     _obstacles = [];
     _floor;
     _requestAnimationFrameId;
+    _isPaused = false;
     sendScore() {
     }
 }

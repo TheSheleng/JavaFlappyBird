@@ -9,4 +9,11 @@ export class Floor extends GameObject {
 
         this.size = new Vector2D(window.screen.width, settings.height);
     }
+
+    protected tick(deltaTime: number) {
+        // End the game if the pawn is colliding with the floor
+        if (Floor.isColliding(this.htmlElement, this.game.pawn.htmlElement)) {
+            this.game.endPlay();
+        }
+    }
 }

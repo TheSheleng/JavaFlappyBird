@@ -20,6 +20,10 @@ export class Pawn extends GameObject {
     }
 
     private nextSprite() {
+        if (this.game.isPaused) {
+            return;
+        }
+
         this.currentSpriteIndex = (this.currentSpriteIndex + 1) % this.spritesUrls.length;
         this.htmlElement.style.backgroundImage = `url(${this.spritesUrls[this.currentSpriteIndex]})`;
     }

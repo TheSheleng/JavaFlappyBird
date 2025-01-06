@@ -6,8 +6,8 @@ export class GameObject {
     public constructor(game: Game, location: Vector2D, settings: HtmlElementSettings) {
         this.game = game;
 
-        this.htmlElement = document.createElement("div");
-        this.htmlElement.className = settings.htmlElementClassName;
+        this._htmlElement = document.createElement("div");
+        this._htmlElement.className = settings.htmlElementClassName;
         settings.htmlElementParent.appendChild(this.htmlElement);
 
         this.location = location;
@@ -18,9 +18,26 @@ export class GameObject {
         });
     }
 
-    public static isColliding(object1: GameObject, object2: GameObject): boolean {
-        // TODO: Implement collision detection
-        return false;
+    /**
+     * Checks if two elements are colliding with each other. We check for HTMLElements instead of GameObjects to support
+     * objects with multiple HTMLElements (like Obstacle).\
+     * Simple usage example: GameObject.isColliding(object1.htmlElement, object2.htmlElement)
+     */
+    public static isColliding(element1: HTMLElement, element2: HTMLElement): boolean {
+        // Get the position and dimensions of the first element
+        const rect1: DOMRect = element1.getBoundingClientRect();
+
+        // Get the position and dimensions of the second element
+        const rect2: DOMRect = element2.getBoundingClientRect();
+
+        // Check if two elements are colliding horizontally
+        const horizontalTouch: boolean = rect1.right >= rect2.left && rect1.left <= rect2.right;
+
+        // Check if two elements are colliding vertically
+        const verticalTouch: boolean = rect1.bottom >= rect2.top && rect1.top <= rect2.bottom;
+
+        // Return true if two elements are colliding horizontally and vertically
+        return horizontalTouch && verticalTouch;
     }
 
     public get location(): Vector2D {
@@ -47,10 +64,13 @@ export class GameObject {
 
     protected game: Game;
 
-    protected htmlElement: HTMLElement;
+    public get htmlElement(): HTMLElement {
+        return this._htmlElement;
+    }
 
     protected tick(deltaTime: number): void {}
 
     private _location: Vector2D = new Vector2D();
     private _size: Vector2D = new Vector2D();
+    private readonly _htmlElement: HTMLElement;
 }

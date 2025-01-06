@@ -16,6 +16,18 @@ export class Trigger extends GameObject {
     public onPawnOverlap: MulticastDelegate<() => void> = new MulticastDelegate<() => void>();
 
     protected tick(deltaTime: number) {
+        const isCollidingWithPawn: boolean = GameObject.isColliding(this.htmlElement, this.game.pawn.htmlElement);
 
+        if (isCollidingWithPawn && !this._wasCollidingWithPawnLastTick) {
+            this.onPawnOverlap.broadcast();
+            this._wasCollidingWithPawnLastTick = true;
+
+            console.log("Triggered");
+        }
+        else if (!isCollidingWithPawn && this._wasCollidingWithPawnLastTick) {
+            this._wasCollidingWithPawnLastTick = false;
+        }
     }
+
+    private _wasCollidingWithPawnLastTick: boolean = false;
 }
