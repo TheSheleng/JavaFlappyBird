@@ -17,8 +17,8 @@ export class Trigger extends GameObject {
             // Remember that the pawn was colliding with the trigger
             this._wasCollidingWithPawnLastTick = true;
         }
-        // Remember that the pawn wasn't colliding with the trigger otherwise
-        else {
+        // Remember that the pawn wasn't colliding with the trigger if not colliding with it
+        else if (!isCollidingWithPawn) {
             this._wasCollidingWithPawnLastTick = false;
         }
     }
