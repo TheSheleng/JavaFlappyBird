@@ -38,8 +38,16 @@ body {
     bottom: 0;
     width: 100%;
     height: 20%;
-    background: linear-gradient(80deg, #32CD32, #228B22);
-    box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.5), 0 5px 10px rgba(0, 0, 0, 0.2), 0 3px 5px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(80deg, #32CD32, #228B22); /* Градиент для пола */
+    box-shadow:
+            inset 0 10px 30px rgba(0, 0, 0, 0.6),          /* Более глубокая внутренняя тень */
+            inset 0 5px 20px rgba(0, 0, 0, 0.4),           /* Меньшая внутренняя тень для объёма */
+            0 15px 25px rgba(0, 0, 0, 0.3),               /* Тень снизу для глубины */
+            0 10px 20px rgba(0, 0, 0, 0.2),               /* Легкая тень снизу */
+            0 3px 5px rgba(0, 0, 0, 0.1),                 /* Лёгкая тень для деталей */
+            0 5px 10px rgba(0, 0, 0, 0.1),                /* Тень для объёма */
+            inset 15px 15px 25px rgba(255, 255, 255, 0.4), /* Светлая внутренняя тень для освещения */
+            inset -15px -15px 25px rgba(0, 0, 0, 0.3);    /* Тёмная внутренняя тень для контраста */
     z-index: 1;
 }
 
@@ -85,12 +93,20 @@ body {
     bottom: 100px;
     background: linear-gradient(80deg, #32CD32, #228B22);
     border: 5px #228B22 solid;
-    box-shadow: inset -5px -5px 10px rgba(255,255,255,0.5),
-        inset 5px 5px 10px rgba(0,0,0,0.5),
-        0 5px 10px rgba(0,0,0,0.5),
-        0 20px 30px rgba(0,0,0,0.5);
+    box-shadow:
+            inset -5px -5px 20px rgba(255,255,255,0.3),
+            inset 5px 5px 25px rgba(0,0,0,0.4),
+            0 -5px 15px rgba(0,0,0,0.3),
+            0 5px 15px rgba(0,0,0,0.3),
+            0 -15px 25px rgba(0,0,0,0.2),
+            0 15px 25px rgba(0,0,0,0.2),
+            0 0 40px rgba(0, 0, 0, 0.15),
+            0 0 30px rgba(0, 0, 0, 0.3),
+            0 0 25px rgba(0, 0, 0, 0.4),
+            inset 20px 20px 30px rgba(255, 255, 255, 0.5),
+            inset -20px -20px 30px rgba(0, 0, 0, 0.5);
     transform: rotate(180deg);
-    border-radius: 5px 5px 0 0;
+    border-radius: 10px 10px 0 0;
     overflow: hidden;
 }
 
@@ -102,11 +118,19 @@ body {
     height: 1000px;
     background: linear-gradient(80deg, #32CD32, #228B22);
     border: 5px #228B22 solid;
-    box-shadow: inset -5px -5px 10px rgba(255,255,255,0.5),
-        inset 5px 5px 10px rgba(0,0,0,0.5),
-        0 5px 10px rgba(0,0,0,0.5),
-        0 20px 30px rgba(0,0,0,0.5);
-    border-radius: 5px 5px 0 0;
+    box-shadow:
+            inset -5px -5px 20px rgba(255,255,255,0.3),
+            inset 5px 5px 25px rgba(0,0,0,0.4),
+            0 -5px 15px rgba(0,0,0,0.3),
+            0 5px 15px rgba(0,0,0,0.3),
+            0 -15px 25px rgba(0,0,0,0.2),
+            0 15px 25px rgba(0,0,0,0.2),
+            0 0 40px rgba(0, 0, 0, 0.15),
+            0 0 30px rgba(0, 0, 0, 0.3),
+            0 0 25px rgba(0, 0, 0, 0.4),
+            inset -20px -20px 30px rgba(255, 255, 255, 0.5),
+            inset 20px 20px 30px rgba(0, 0, 0, 0.5);
+    border-radius: 10px 10px 0 0;
     overflow: hidden;
 }
 
@@ -120,6 +144,10 @@ body {
     top: 0;
     left: 0;
     border-radius: 0 0 10px 10px;
+    box-shadow:
+            0 3px 6px rgba(0, 0, 0, 0.1),
+            0 6px 15px rgba(0, 0, 0, 0.15),
+            0 12px 25px rgba(0, 0, 0, 0.2);
 }
 
 .container {
