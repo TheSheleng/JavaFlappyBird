@@ -72,6 +72,10 @@ export class Game {
     }
     updateScore() {
         ++this._score;
+        const scoreDisplay = document.getElementById('score-display');
+        if (scoreDisplay) {
+            scoreDisplay.textContent = this._score.toString();
+        }
     }
     lastFrameTime = 0;
     tickCallback = (currentTime) => {

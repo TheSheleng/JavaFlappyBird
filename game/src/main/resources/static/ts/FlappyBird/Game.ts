@@ -103,6 +103,11 @@ export class Game {
 
     private updateScore(): void {
         ++this._score;
+
+        const scoreDisplay = document.getElementById('score-display') as HTMLDivElement;
+        if (scoreDisplay) {
+            scoreDisplay.textContent = this._score.toString();
+        }
     }
 
     private lastFrameTime: number = 0;
