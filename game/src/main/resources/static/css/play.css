@@ -15,22 +15,22 @@ body {
     overflow: hidden;
 }
 
-.background {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.5), 0 5px 10px rgba(0, 0, 0, 0.2), 0 3px 5px rgba(0, 0, 0, 0.1);        
-}
-
 .score-display {
     position: absolute;
     top: 20px;
     right: 20px;
     font-size: 40px;
     font-family: 'Press Start 2P', cursive;
-    color: white;
+    color: #ffffff;
     z-index: 10;
+}
+
+.background {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.5), 0 5px 10px rgba(0, 0, 0, 0.2), 0 3px 5px rgba(0, 0, 0, 0.1);        
 }
 
 .ground {
@@ -121,3 +121,77 @@ body {
     left: 0;
     border-radius: 0 0 10px 10px;
 }
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 10;
+}
+
+#game-over-modal {
+    display: none;
+}
+
+.box {
+    background-color: #222;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 400px;
+    color: #ffffff;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.20), 0px 5px 5px rgba(0, 0, 0, 0.10);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.box:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.4), 0px 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.btn {
+    flex: 1;
+    padding: 10px 20px;
+    font-family: 'Press Start 2P', cursive;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.restart-btn {
+    background-color: #57b1e4;
+    color: #ffffff;
+}
+
+.restart-btn:hover {
+    background-color: #4593c7;
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 20px rgba(69, 147, 199, 0.5);
+}
+
+.menu-btn {
+    background-color: #ff4d4d;
+    color: #ffffff;
+}
+
+.menu-btn:hover {
+    background-color: #cc0000;
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 20px rgba(204, 0, 0, 0.5);
+}
+
+

@@ -4,8 +4,13 @@ import {Obstacle} from "./GameObjects/Obstacle.js";
 import {Floor} from "./GameObjects/Floor.js";
 import {Pawn} from "./GameObjects/Pawn.js";
 
+import {GameOverModal} from "./GameOverModal.js";
+
 export class Game {
     public constructor(settings: Settings) {
+        // Create the game over window
+        this._gameOverModal = new GameOverModal();
+
         // Create the pawn
         this._pawn = new Pawn(this, settings.pawnSettings);
 
@@ -73,6 +78,10 @@ export class Game {
         });
     }
 
+    public get gameOverModal(): GameOverModal {
+        return this._gameOverModal;
+    }
+
     public get pawn(): Pawn {
         return this._pawn;
     }
@@ -91,6 +100,15 @@ export class Game {
         this.pause();
 
         this.sendScore();
+
+        const currentScore = this._score;
+        const bestScore = Math.max(this._score, this.getBestScore());
+        this.gameOverModal.show(currentScore, bestScore);
+    }
+
+    private getBestScore(): number {
+        // TODO: Connect to a database to get the best score
+        return 1000; // Temporary placeholder value
     }
 
     public get score(): number {
@@ -141,6 +159,8 @@ export class Game {
     }
 
     private _score: number = 0;
+
+    private readonly _gameOverModal: GameOverModal;
 
     private readonly _pawn: Pawn;
     private _obstacles: Array<Obstacle> = [];

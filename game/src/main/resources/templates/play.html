@@ -8,9 +8,19 @@
     <link rel="stylesheet" href="../static/css/play.css">
 </head>
 <body>
-    <div class="background" id="bg"></div>
     <div class="score-display" id="score-display">0</div>
-
+    <div class="background" id="bg"></div>
+    <div class="container" id="game-over-modal">
+        <div class="box">
+            <h2>Game Over</h2>
+            <p>Your Score: <span id="current-score">0</span></p>
+            <p>Best Score: <span id="best-score">0</span></p>
+            <div class="button-group">
+                <button class="btn restart-btn" id="restart-button">Restart</button>
+                <button class="btn menu-btn" id="menu-button">Main Menu</button>
+            </div>
+        </div>
+    </div>
     <script type="module" src="../static/js/FlappyBird/Game.js"></script>
 </body>
 </html>
