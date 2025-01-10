@@ -15,7 +15,7 @@ export class PawnSettings extends HtmlElementSettings {
     }
     initLocation = new Vector2D(100, 350);
     gravity = 9.80665;
-    jumpImpulse = 3.5;
+    jumpImpulse = 200;
     spritesUrls = [
         "../static/images/birdMiddle.png",
         "../static/images/birdUp.png",
