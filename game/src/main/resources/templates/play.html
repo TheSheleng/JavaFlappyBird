@@ -1,34 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game</title>
-    <link rel="stylesheet" href="/css/play.css">
+    <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/play.css">
 </head>
 <body>
-    <div class="background" id="bg">
-        <div class="bird" id="bird"></div>
-        <div class=" pipe-top" style="--pipe-height: 40%;" id="pipe-top"></div>
-        <div class=" pipe-bottom" style="--pipe-height: 20%;" id="pipe-bottom"></div>
-        <div class="ground" id="ground"></div>
+    <div class="score-display" id="score-display">0</div>
+    <div class="background" id="bg"></div>
+    <div class="container" id="game-over-modal">
+        <div class="box">
+            <h2>Game Over</h2>
+            <p>Your Score: <span id="current-score">0</span></p>
+            <p>Best Score: <span id="best-score">0</span></p>
+            <div class="button-group">
+                <button class="btn restart-btn" id="restart-button">Restart</button>
+                <button class="btn menu-btn" id="menu-button">Main Menu</button>
+            </div>
+        </div>
     </div>
-
-    <script>
-        const bird = document.querySelector('.bird');
-        const birdSprites = [
-            '../images/birdMiddle.png',
-            '../images/birdUp.png',
-            '../images/birdDown.png'
-        ];
-
-        let currentSprite = 0;
-
-        function changeBirdSprite() {
-            currentSprite = (currentSprite + 1) % birdSprites.length; 
-            bird.style.backgroundImage = `url(${birdSprites[currentSprite]})`;
-        }
-        setInterval(changeBirdSprite, 200);
-    </script>
+    <script type="module" src="../static/js/FlappyBird/Game.js"></script>
 </body>
 </html>

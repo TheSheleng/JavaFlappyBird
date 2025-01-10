@@ -4,8 +4,13 @@ import {Obstacle} from "./GameObjects/Obstacle.js";
 import {Floor} from "./GameObjects/Floor.js";
 import {Pawn} from "./GameObjects/Pawn.js";
 
+import {GameOverModal} from "./GameOverModal.js";
+
 export class Game {
     public constructor(settings: Settings) {
+        // Create the game over window
+        this._gameOverModal = new GameOverModal();
+
         // Create the pawn
         this._pawn = new Pawn(this, settings.pawnSettings);
 
@@ -22,7 +27,7 @@ export class Game {
         const firstObstacle: Obstacle = new Obstacle(this, new Vector2D(firstObstacleLocationX, 0),
             settings.obstaclesSettings);
 
-        // Subscribe to the trigger's onPawnOverlap event to update the score
+        // Subscribe to the trigger's onPawnOverlap event to update the _score
         firstObstacle.trigger.onPawnOverlap.add(() => this.updateScore());
 
         // Add the first obstacle to the list of obstacles
@@ -53,7 +58,7 @@ export class Game {
             const nextObstacle: Obstacle = new Obstacle(this, new Vector2D(nextObstacleLocation, 0),
                 settings.obstaclesSettings);
 
-            // Subscribe to the trigger's onPawnOverlap event to update the score
+            // Subscribe to the trigger's onPawnOverlap event to update the _score
             nextObstacle.trigger.onPawnOverlap.add(() => this.updateScore());
 
             // Add the nextObstacle to the list of obstacles
@@ -71,6 +76,10 @@ export class Game {
                 this.resume();
             }
         });
+    }
+
+    public get gameOverModal(): GameOverModal {
+        return this._gameOverModal;
     }
 
     public get pawn(): Pawn {
@@ -91,6 +100,19 @@ export class Game {
         this.pause();
 
         this.sendScore();
+
+        const currentScore = this._score;
+        const bestScore = Math.max(this._score, this.getBestScore());
+        this.gameOverModal.show(currentScore, bestScore);
+    }
+
+    private getBestScore(): number {
+        // TODO: Connect to a database to get the best score
+        return 1000; // Temporary placeholder value
+    }
+
+    public get score(): number {
+        return this._score;
     }
 
     public get isPaused(): boolean {
@@ -98,7 +120,12 @@ export class Game {
     }
 
     private updateScore(): void {
-        ++this.score;
+        ++this._score;
+
+        const scoreDisplay = document.getElementById('score-display') as HTMLDivElement;
+        if (scoreDisplay) {
+            scoreDisplay.textContent = this._score.toString();
+        }
     }
 
     private lastFrameTime: number = 0;
@@ -131,7 +158,9 @@ export class Game {
         this._requestAnimationFrameId = requestAnimationFrame(this.tickCallback);
     }
 
-    private score: number = 0;
+    private _score: number = 0;
+
+    private readonly _gameOverModal: GameOverModal;
 
     private readonly _pawn: Pawn;
     private _obstacles: Array<Obstacle> = [];
@@ -142,7 +171,7 @@ export class Game {
     private _isPaused: boolean = false;
 
     private sendScore(): void {
-
+        // TODO: Implement sending the score to the server
     }
 }
 

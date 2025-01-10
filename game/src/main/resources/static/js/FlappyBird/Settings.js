@@ -14,13 +14,15 @@ export class PawnSettings extends HtmlElementSettings {
         this.htmlElementClassName = "bird";
     }
     initLocation = new Vector2D(100, 350);
-    fallSpeed = 0.2;
-    jumpImpulse = 1;
+    gravity = 9.80665 * 75;
+    jumpImpulse = 250;
     spritesUrls = [
         "../static/images/birdMiddle.png",
         "../static/images/birdUp.png",
         "../static/images/birdDown.png"
     ];
+    maxFallRotation = 30;
+    velocityForMaxFallRotation = this.jumpImpulse;
     changeSpriteInterval = 200;
 }
 // HtmlElementParent must be set as Obstacle's htmlElement
