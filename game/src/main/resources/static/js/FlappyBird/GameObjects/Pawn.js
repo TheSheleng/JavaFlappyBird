@@ -15,7 +15,7 @@ export class Pawn extends GameObject {
     }
     tick(deltaTime) {
         // Calculate the new location by applying the gravity to the current velocity
-        this.velocity -= this.gravity;
+        this.velocity -= this.gravity * deltaTime;
         // Always multiply velocity by deltaTime to make the game frame rate independent
         this.location = new Vector2D(this.location.x, this.location.y + this.velocity * deltaTime);
         // Rotate the pawn according to its velocity

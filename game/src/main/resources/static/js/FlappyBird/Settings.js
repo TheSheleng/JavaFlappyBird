@@ -14,8 +14,8 @@ export class PawnSettings extends HtmlElementSettings {
         this.htmlElementClassName = "bird";
     }
     initLocation = new Vector2D(100, 350);
-    gravity = 9.80665;
-    jumpImpulse = 200;
+    gravity = 9.80665 * 75;
+    jumpImpulse = 250;
     spritesUrls = [
         "../static/images/birdMiddle.png",
         "../static/images/birdUp.png",
