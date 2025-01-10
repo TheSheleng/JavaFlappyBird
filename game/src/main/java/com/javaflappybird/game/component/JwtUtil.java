@@ -36,6 +36,7 @@ public class JwtUtil {
         // Here you can add logic to get user details
         UserDetails userDetails = User.builder()
                 .username(username)
+                .password("")
                 .authorities("ROLE_USER") // We indicate the role
                 .build();
 

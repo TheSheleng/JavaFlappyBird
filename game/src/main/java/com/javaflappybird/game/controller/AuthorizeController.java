@@ -14,10 +14,17 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/auth")
@@ -34,6 +41,36 @@ public class AuthorizeController {
 
     @Autowired
     private UserService userService;
+
+    @GetMapping("/google-login")
+    public String googleSuccess(
+            @AuthenticationPrincipal OAuth2User principal,
+            HttpServletResponse response,
+            Model model) {
+        // Getting user information from Google
+        String googleId = principal.getAttribute("sub"); // ID пользователя Google
+        String email = principal.getAttribute("email");  // Email пользователя
+        String name = principal.getAttribute("name");    // Имя пользователя
+
+        // Search for a user in the database
+        User user = userRepository.findByGoogleId(googleId);
+
+        // If the user is not found, create a new one
+        if (user == null) {
+            user = new User();
+            user.setGoogleId(googleId);
+            user.setEmail(email);
+            user.setUsername(name);
+            user.setCreatedAt(LocalDateTime.now());
+            userRepository.save(user);
+        }
+
+        // User authorization in the system with JWT
+        String token = jwtUtil.generateToken(user.getUsername());
+        CookieUtil.setJwtCookie(token, response);
+
+        return "redirect:/menu";
+    }
 
     @PostMapping("/login")
     public String login(
@@ -82,6 +119,7 @@ public class AuthorizeController {
     @PostMapping("/logout")
     public String logout(HttpServletResponse response) {
         CookieUtil.deleteJwtCookie(response);
+        CookieUtil.deleteJSessionIdCookie(response);
 
         return "redirect:/auth/login";
     }

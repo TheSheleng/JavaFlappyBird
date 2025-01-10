@@ -127,6 +127,21 @@ button {
     color: #ffffff;
 }
 
+.sign-in-btn {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+    font-size: 0.8rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    background-color: #57b1e4;
+    color: #ffffff;
+}
+
 .sign-in-btn:hover {
     box-shadow: 0px 5px 10px rgba(87, 177, 228, 0.5);
     border-color: #4593c7;
