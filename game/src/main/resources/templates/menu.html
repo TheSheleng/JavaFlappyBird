@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Menu</title>
-    <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/menu.css">
+    <link rel="stylesheet" href="/css/menu.css">
 </head>
 <body>
     <div class="container">
@@ -21,7 +21,6 @@
         </div>
     </div>
 
-    <script src="/js/auth.js"></script>
     <script>
         function MenuPage() {
             this.playBtn = document.getElementById('play-btn');
@@ -34,23 +33,23 @@
         }
         
         MenuPage.prototype.navigateToPlay = function() {
-            window.location.href = 'play.html';
+            window.location.href = 'play';
         };
         
         MenuPage.prototype.navigateToLeaderboard = function() {
-            window.location.href = 'leaderboard.html';
+            window.location.href = 'leaderboard';
         };
         
         MenuPage.prototype.navigateToSettings = function() {
-            window.location.href = 'settings.html';
+            window.location.href = 'settings';
         };
         
         MenuPage.prototype.navigateToAbout = function() {
-            window.location.href = 'about.html';
+            window.location.href = 'about';
         };
         
         MenuPage.prototype.exitGame = function() {
-            window.location.href = 'exit.html';
+            window.location.href = 'exit';
         };
         
         MenuPage.prototype.addEventListeners = function() {

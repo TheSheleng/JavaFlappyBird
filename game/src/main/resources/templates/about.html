@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About the Game</title>
-    <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
-    <link rel="stylesheet" href="../static/css/about.css">
+    <link rel="stylesheet" href="/css/about.css">
 </head>
 <body>
     <div class="container">
@@ -23,7 +23,6 @@
         <button class="back-btn" id="back-btn">Back</button>
     </div>
 
-    <script src="/js/auth.js"></script>
     <script>
         function AboutPage() {
             this.backBtn = document.getElementById('back-btn');

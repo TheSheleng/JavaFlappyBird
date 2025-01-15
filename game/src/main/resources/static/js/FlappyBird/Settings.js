@@ -17,9 +17,9 @@ export class PawnSettings extends HtmlElementSettings {
     gravity = 9.80665 * 75;
     jumpImpulse = 250;
     spritesUrls = [
-        "../static/images/birdMiddle.png",
-        "../static/images/birdUp.png",
-        "../static/images/birdDown.png"
+        "/images/birdMiddle.png",
+        "/images/birdUp.png",
+        "/images/birdDown.png"
     ];
     maxFallRotation = 30;
     velocityForMaxFallRotation = this.jumpImpulse;

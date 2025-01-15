@@ -30,7 +30,7 @@ public class Session {
     private LocalDateTime startTime;
 
     @Column(name = "end_time")
-    private LocalDateTime endTime;  // Может быть null для активных сессий
+    private LocalDateTime endTime;
 
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;

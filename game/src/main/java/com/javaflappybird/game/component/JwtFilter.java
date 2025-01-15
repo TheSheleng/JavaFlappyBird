@@ -1,5 +1,6 @@
 package com.javaflappybird.game.component;
 
+import jakarta.servlet.http.Cookie;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -18,21 +19,30 @@ public class JwtFilter extends OncePerRequestFilter {
     public JwtFilter(JwtUtil jwtUtil) {
         this.jwtUtil = jwtUtil;
     }
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        String token = request.getHeader("Authorization");
 
-        if (token != null && token.startsWith("Bearer ")) {
-            token = token.substring(7);
-            if (jwtUtil.isTokenValid(token)) {
-                String username = jwtUtil.extractUsername(token);
+        // Get token from cookies
+        String token = null;
+        Cookie[] cookies = request.getCookies();
 
-                // Логика добавления пользователя в SecurityContext
-                var authentication = jwtUtil.getAuthentication(token);
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("token".equals(cookie.getName())) {  // Cookie name must match "token"
+                    token = cookie.getValue();
+                    break;
+                }
             }
+        }
+
+        // If the token is found, check it
+        if (token != null && jwtUtil.isTokenValid(token)) {
+            String username = jwtUtil.extractUsername(token);
+
+            // Logic for adding a user to SecurityContext
+            var authentication = jwtUtil.getAuthentication(token);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
         }
 
         filterChain.doFilter(request, response);

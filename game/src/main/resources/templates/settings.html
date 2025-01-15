@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
-    <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/settings.css">
+    <link rel="stylesheet" href="/css/settings.css">
 </head>
 <body>
     <div class="container">
@@ -48,12 +48,11 @@
             </div>
         </div>
         <div class="settings-controls">
-            <button class="settings-btn back-btn" id="back-btn">Back</button>
+            <a href="/menu" class="settings-btn back-btn">Back</a>
             <button class="settings-btn save-btn">Save</button>
         </div>
     </div>
 
-    <script src="/js/auth.js"></script>
     <script>
         function SettingsPage() {
             this.themeIcon = document.getElementById('theme-icon');

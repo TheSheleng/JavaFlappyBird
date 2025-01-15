@@ -1,25 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exit Page</title>
-    <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
-    <link rel="stylesheet" href="../static/css/exit.css">
+    <link rel="stylesheet" href="/css/exit.css">
 </head>
 <body>
     <div class="container">
         <div class="box">
             <p>Are you sure you want to exit?</p>
             <div class="button-group">
-                <button class="exit-btn yes-btn" id="yes-btn">Yes</button>
+                <form action="/auth/logout" method="POST">
+                    <button type="submit" class="exit-btn yes-btn" id="yes-btn">Yes</button>
+                </form>
                 <button class="exit-btn no-btn" id="no-btn">No</button>
             </div>
         </div>
     </div>
 
-    <script src="/js/auth.js"></script>
     <script>
         function ExitPage() {
             this.yesBtn = document.getElementById('yes-btn');

@@ -23,9 +23,9 @@ export class PawnSettings extends HtmlElementSettings{
     public jumpImpulse: number = 250;
 
     public spritesUrls: Array<string> = [
-        "../static/images/birdMiddle.png",
-        "../static/images/birdUp.png",
-        "../static/images/birdDown.png"
+        "/images/birdMiddle.png",
+        "/images/birdUp.png",
+        "/images/birdDown.png"
     ]
 
     public maxFallRotation: number = 30;

@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Page</title>
-    <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="../static/css/registration.css">
+    <link rel="stylesheet" href="/css/registration.css">
 </head>
 <body>
     <div class="container">
@@ -30,11 +30,11 @@
             <h1>Fun is comming!</h1>
             <p>Just a few steps away from turning your journey into an epic adventure!</p>
 
-            <div id="error-message" class="error-message">
-                <p id="error-text" style="color: red"></p>
+            <div id="error-message" class="error-message" th:if="${errorMessage != null}">
+                <p id="error-text" style="color: red" th:text="${errorMessage}"></p>
             </div>
 
-            <form action="/auth/register" method="POST" onsubmit="event.preventDefault(); register(username.value, email.value, password.value)">
+            <form action="/auth/register" method="POST">
                 <input type="text" id="username" name="username" placeholder="Enter your username" required>
                 <input type="email" id="email" name="email" placeholder="Enter your email" required>
                 <div class="password-field">
@@ -44,14 +44,13 @@
                     </span>
                 </div>
                 <button class="sign-up-btn" type="submit">Sign Up</button>
-                <button class="sign-up-btn" type="submit" id="sign-up-btn-google">
+                <a href="/oauth2/authorization/google" class="sign-up-btn">
                     Sign Up with <i class="fab fa-google" style="margin-left: 10px; font-weight: bold;"></i>
-                </button>
+                </a>
             </form>
         </div>
     </div>
 
-    <script src="/js/auth.js"></script>
     <script>
         function togglePassword() {
             const passwordInput = document.getElementById('password');
