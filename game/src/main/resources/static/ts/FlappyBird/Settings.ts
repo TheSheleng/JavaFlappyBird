@@ -8,8 +8,8 @@ export class Settings {
 }
 
 export class GeneralSettings {
-    public updateScoreSoundUrl: string = "/audio/sounds/score.wav";
-    public gameOverSoundUrl: string = "/audio/sounds/hit.wav";
+    public updateScoreSoundUrl: string = "audio/sounds/score.wav";
+    public gameOverSoundUrl: string = "audio/sounds/hit.wav";
 }
 
 export class HtmlElementSettings {
@@ -29,9 +29,9 @@ export class PawnSettings extends HtmlElementSettings{
     public jumpImpulse: number = 250;
 
     public spritesUrls: Array<string> = [
-        "/images/birdMiddle.png",
-        "/images/birdUp.png",
-        "/images/birdDown.png"
+        "images/birdMiddle.png",
+        "images/birdUp.png",
+        "images/birdDown.png"
     ]
 
     public maxFallRotation: number = 30;
@@ -39,7 +39,7 @@ export class PawnSettings extends HtmlElementSettings{
 
     public changeSpriteInterval: number = 200;
 
-    public jumpSoundUrl: string = "/audio/sounds/jump.wav";
+    public jumpSoundUrl: string = "audio/sounds/jump.wav";
 }
 
 // HtmlElementParent must be set as Obstacle's htmlElement

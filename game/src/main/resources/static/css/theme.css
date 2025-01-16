@@ -1,0 +1,31 @@
+:root {
+    --baby-blue-gradient: linear-gradient(80deg, #9dd6f9, #57b1e4);
+    --baby-blue-gradient-alt: linear-gradient(120deg, #9dd6f9, #57b1e4);
+
+    --baby-blue-color: #57b1e4;
+    --white-color: #ffffff;
+
+    --baby-blue-hover: #4593c7;
+
+    --toggle: #ffffff;
+    --toggle2: #57b1e4;
+
+    --text: #fff;
+    --about-text: #555
+}
+
+[data-theme="dark"] {
+    --baby-blue-gradient: linear-gradient(80deg, #1e3554, #2b4a6e);
+    --baby-blue-gradient-alt: linear-gradient(120deg, #1e3554, #2b4a6e);
+
+    --baby-blue-color: #2b4a6e;
+    --white-color: #333;
+
+    --baby-blue-hover: #3a5a8a;
+
+    --toggle: #57b1e4;
+    --toggle2: #57b1e4;
+
+    --text: #fff;
+    --about-text: #fff
+}

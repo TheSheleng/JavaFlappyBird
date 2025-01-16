@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Press Start 2P', cursive;
-    background: linear-gradient(80deg, #9dd6f9, #57b1e4);
+    background: var(--baby-blue-gradient);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,7 +14,7 @@ body {
     max-width: 800px;
     max-height: 80vh;
     overflow: auto;
-    background-color: #ffffff;
+    background-color: var(--white-color);
     border-radius: 20px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.20), 0px 5px 5px rgba(0, 0, 0, 0.10);
     padding: 20px;
@@ -55,7 +55,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #ffffff;
+    color: var(--white-color);
     background-color: #57b1e4;
     padding: 20px 30px;
     border-radius: 20px;
@@ -102,13 +102,13 @@ img {
     border: none;
     margin-top: 20px;
     background-color: #57b1e4;
-    color: #ffffff;
+    color: var(--white-color);
     width: 50%;
     transition: all 0.3s ease;
 }
 
 .back-btn:hover {
-    background-color: #4593c7;
+    background-color: var(--baby-blue-hover);
     transform: translateY(-5px);
     box-shadow: 0px 10px 20px rgba(69, 147, 199, 0.5);
 }

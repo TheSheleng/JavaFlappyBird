@@ -1,17 +1,30 @@
 "use strict";
-class Memory {
-    // Метод для сохранения выбранной темы
-    saveTheme(theme) {
-        // Сохранение выбранной темы
-    }
-    // Метод для сохранения настроек звука
-    saveSoundPreference(isOn) {
-        // Сохранение настроек звука
-    }
-    // Метод для сохранения состояния пользователя (например, авторизован/не авторизован)
-    saveUser(isIn) {
-        // Сохранение состояния пользователя
+// Загружаем тему из cookies
+function loadThemeFromCookies() {
+    const themeCookie = document.cookie.split('; ').find((row) => row.startsWith('theme='));
+    const savedTheme = themeCookie ? themeCookie.split('=')[1] : 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+}
+// Загружаем состояние звука из cookies
+function loadSoundFromCookies() {
+    const soundCookie = document.cookie.split('; ').find((row) => row.startsWith('sound='));
+    const isSoundEnabled = soundCookie ? soundCookie.split('=')[1] === 'on' : true;
+    const soundIcon = document.getElementById('sound-icon');
+    if (soundIcon) {
+        if (isSoundEnabled) {
+            soundIcon.classList.remove('fa-volume-mute');
+            soundIcon.classList.add('fa-volume-up');
+            soundIcon.nextElementSibling && (soundIcon.nextElementSibling.textContent = 'Sound ON');
+        }
+        else {
+            soundIcon.classList.remove('fa-volume-up');
+            soundIcon.classList.add('fa-volume-mute');
+            soundIcon.nextElementSibling && (soundIcon.nextElementSibling.textContent = 'Sound OFF');
+        }
     }
 }
-// Создание экземпляра класса Memory
-const memory = new Memory();
+// Запускаем загрузку настроек при загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+    loadThemeFromCookies();
+    loadSoundFromCookies();
+});

@@ -2,19 +2,18 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Press Start 2P', cursive;
-    background: linear-gradient(80deg, #9dd6f9, #57b1e4);
+    background: var(--baby-blue-gradient);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    color: #333;
 }
 
 .container {
     text-align: center;
     width: 80%;
     max-width: 600px;
-    background-color: #ffffff;
+    background-color: var(--white-color);
     border-radius: 20px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2), 0px 5px 5px rgba(0, 0, 0, 0.1);
     padding: 40px 20px;
@@ -28,7 +27,7 @@ body {
 
 h1 {
     font-size: 2rem;
-    color: #57b1e4;
+    color: var(--baby-blue-color);
     margin-bottom: 30px;
 }
 
@@ -39,20 +38,19 @@ h1 {
 }
 
 .menu-btn {
-    background-color: #57b1e4;
-    color: #ffffff;
+    background-color: var(--baby-blue-color);
+    color: var(--text);
     font-size: 1rem;
     padding: 15px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     font-family: 'Press Start 2P', cursive;
-    box-shadow: 0px 5px 10px rgba(87, 177, 228, 0.5);
     transition: all 0.3s ease;
 }
 
 .menu-btn:hover {
-    background-color: #4593c7;
+    background-color: var(--baby-blue-hover);
     transform: translateY(-5px);
     box-shadow: 0px 10px 20px rgba(69, 147, 199, 0.5);
 }

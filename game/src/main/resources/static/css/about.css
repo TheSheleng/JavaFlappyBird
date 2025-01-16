@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Press Start 2P', cursive;
-    background: linear-gradient(80deg, #9dd6f9, #57b1e4);
+    background: var(--baby-blue-gradient);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,7 +12,7 @@ body {
 .container {
     width: 80%;
     max-width: 800px;
-    background-color: #ffffff;
+    background-color: var(--white-color);
     border-radius: 20px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.20), 0px 5px 5px rgba(0, 0, 0, 0.10);
     padding: 20px;
@@ -32,7 +32,7 @@ h1{
 
 p {
     line-height: 2; 
-    color: #555; 
+    color: var(--about-text);
     text-align: center;
 }
 
@@ -47,13 +47,13 @@ p {
 .about-content ul li {
     position: relative; 
     line-height: 2; 
-    color: #555; 
+    color: var(--about-text);
     padding-left: 20px; 
 }
 
 .about-content ul li::before {
     content: "•";
-    color: #57b1e4; 
+    color: #57b1e4;
     position: absolute; 
     left: 0; 
     top: 0;
@@ -67,7 +67,7 @@ p {
     border: none;
     margin-top: 20px;
     background-color: #57b1e4;
-    color: #ffffff;
+    color: var(--white-color);
     width: 50%; 
     transition: all 0.3s ease;
 }

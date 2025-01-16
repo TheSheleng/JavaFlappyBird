@@ -101,15 +101,17 @@ export class Game {
     public onTick: MulticastDelegate<(deltaTime: number) => void> = new MulticastDelegate<() => void>();
 
     public playSound(sound: HTMLAudioElement): void {
-        // Don't play the sound if the game is paused
-        if (this.isPaused) {
+        // Проверяем, включён ли звук в cookies
+        const soundCookie = document.cookie.split('; ').find(row => row.startsWith('sound='));
+        const isSoundEnabled = soundCookie ? soundCookie.split('=')[1] === 'on' : true; // По умолчанию звук включён
+
+        // Если звук выключен, не воспроизводим
+        if (!isSoundEnabled || this.isPaused) {
             return;
         }
 
-        // Reset the sound to the beginning in case it's already playing
+        // Сбрасываем звук и играем
         sound.currentTime = 0;
-
-        // Play the sound. then function is used here only to avoid the warning.
         sound.play().then();
     }
 

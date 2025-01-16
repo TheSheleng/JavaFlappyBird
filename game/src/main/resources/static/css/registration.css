@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Press Start 2P', cursive;
-    background: linear-gradient(80deg, #9dd6f9, #57b1e4);
+    background: var(--baby-blue-gradient);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,7 +17,7 @@ body {
     border-radius: 20px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.20), 0px 5px 5px rgba(0, 0, 0, 0.10);
     overflow: hidden;
-    background-color: #ffffff;
+    background-color: var(--white-color);
 }
 
 .sign-up-btn {
@@ -32,7 +32,7 @@ body {
     cursor: pointer;
     font-family: 'Press Start 2P', cursive;
     background-color: #57b1e4;
-    color: #ffffff;
+    color: var(--white-color);
 }
 
 .container:hover {
@@ -53,11 +53,11 @@ body {
 }
 
 .sign-up {
-    background: linear-gradient(120deg, #9dd6f9, #57b1e4);
+    background: var(--baby-blue-gradient-alt);
 }
 
 .sign-in {
-    background-color: #ffffff;
+    background-color: var(--white-color);
 }
 
 h1 {
@@ -92,18 +92,23 @@ form {
 input {
     width: 100%;
     padding: 10px;
-    border:2px solid #57b1e4;
+    border:2px #57b1e4 solid;
     border-radius: 5px;
     font-size: 0.8rem;
     font-family: 'Press Start 2P', cursive;
     text-align: center;
     box-sizing: border-box;
+    background-color: var(--white-color);
+}
+
+input::placeholder {
+    color: #57b1e4;
 }
 
 input:hover,
 input:focus {
     box-shadow: 0px 5px 10px rgba(87, 177, 228, 0.5);
-    border-color: #4593c7;
+    border-color: #57b1e4;
     transition: all 0.5s ease;
 }
 
@@ -118,7 +123,7 @@ input:focus {
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    color: #57b1e4;
+    color: var(--toggle2);
 }
 
 button {
@@ -133,12 +138,12 @@ button {
     cursor: pointer;
     font-family: 'Press Start 2P', cursive;
     background-color: #57b1e4;
-    color: #ffffff;
+    color: var(--white-color);
 }
 
 .sign-up-btn:hover {
     box-shadow: 0px 5px 10px rgba(87, 177, 228, 0.5);
-    border-color: #4593c7;
+    border-color: #57b1e4;
     transition: all 0.5s ease;
     transform: translateY(-5px);
 }
@@ -146,7 +151,7 @@ button {
 .sign-in-btn {
     padding: 20px 30px;
     background-color: #ffffff;
-    color: #57b1e4;
+    color: var(--baby-blue-color);
     font-size: 1.6rem;
     border: none;
     border-radius: 10px;

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/leaderboard.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/leaderboard.css">
 </head>
 <body>
     <div class="container">
@@ -78,6 +79,7 @@
         <button class="back-btn" id="back-btn">Back</button>
     </div>
 
+    <script type="module" src="js/memory.js"></script>
     <script>
         function LeaderboardPage() {
             this.backBtn = document.getElementById('back-btn');

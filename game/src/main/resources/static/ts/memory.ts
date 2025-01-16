@@ -1,19 +1,33 @@
-class Memory {
-    // Метод для сохранения выбранной темы
-    saveTheme(theme: string): void {
-        // Сохранение выбранной темы
-    }
+// Загружаем тему из cookies
+function loadThemeFromCookies(): void {
+    const themeCookie = document.cookie.split('; ').find((row) => row.startsWith('theme='));
+    const savedTheme = themeCookie ? themeCookie.split('=')[1] : 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+}
 
-    // Метод для сохранения настроек звука
-    saveSoundPreference(isOn: boolean): void {
-        // Сохранение настроек звука
-    }
+// Загружаем состояние звука из cookies
+function loadSoundFromCookies(): void {
+    const soundCookie = document.cookie.split('; ').find((row) => row.startsWith('sound='));
+    const isSoundEnabled: boolean = soundCookie ? soundCookie.split('=')[1] === 'on' : true;
 
-    // Метод для сохранения состояния пользователя (например, авторизован/не авторизован)
-    saveUser(isIn: boolean): void {
-        // Сохранение состояния пользователя
+    const soundIcon: HTMLElement | null = document.getElementById('sound-icon');
+    if (soundIcon) {
+        if (isSoundEnabled) {
+            soundIcon.classList.remove('fa-volume-mute');
+            soundIcon.classList.add('fa-volume-up');
+            soundIcon.nextElementSibling && (soundIcon.nextElementSibling.textContent = 'Sound ON');
+        } else {
+            soundIcon.classList.remove('fa-volume-up');
+            soundIcon.classList.add('fa-volume-mute');
+            soundIcon.nextElementSibling && (soundIcon.nextElementSibling.textContent = 'Sound OFF');
+        }
     }
 }
 
-// Создание экземпляра класса Memory
-const memory = new Memory();
+// Запускаем загрузку настроек при загрузке страницы
+document.addEventListener('DOMContentLoaded', (): void => {
+    loadThemeFromCookies();
+    loadSoundFromCookies();
+});
+
+

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,8 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/settings.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/settings.css">
 </head>
 <body>
     <div class="container">
@@ -53,18 +54,68 @@
         </div>
     </div>
 
+    <script type="module" src="js/memory.js"></script>
     <script>
         function SettingsPage() {
             this.themeIcon = document.getElementById('theme-icon');
             this.soundIcon = document.getElementById('sound-icon');
             this.backBtn = document.getElementById('back-btn');
-    
+
+            // Загружаем текущее состояние интерфейса
+            this.syncUI();
+
             this.addEventListeners();
         }
-    
+
+        SettingsPage.prototype.syncUI = function () {
+            // Загружаем тему
+            const themeCookie = document.cookie.split('; ').find((row) => row.startsWith('theme='));
+            const savedTheme = themeCookie ? themeCookie.split('=')[1] : 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+
+            if (this.themeIcon) {
+                if (savedTheme === 'dark') {
+                    this.themeIcon.classList.remove('fa-sun');
+                    this.themeIcon.classList.add('fa-moon');
+                    this.themeIcon.nextElementSibling.textContent = 'Dark Theme';
+                } else {
+                    this.themeIcon.classList.remove('fa-moon');
+                    this.themeIcon.classList.add('fa-sun');
+                    this.themeIcon.nextElementSibling.textContent = 'Light Theme';
+                }
+            }
+
+            // Загружаем звук
+            const soundCookie = document.cookie.split('; ').find((row) => row.startsWith('sound='));
+            const isSoundEnabled = soundCookie ? soundCookie.split('=')[1] === 'on' : true;
+
+            if (this.soundIcon) {
+                if (isSoundEnabled) {
+                    this.soundIcon.classList.remove('fa-volume-mute');
+                    this.soundIcon.classList.add('fa-volume-up');
+                    this.soundIcon.nextElementSibling.textContent = 'Sound ON';
+                } else {
+                    this.soundIcon.classList.remove('fa-volume-up');
+                    this.soundIcon.classList.add('fa-volume-mute');
+                    this.soundIcon.nextElementSibling.textContent = 'Sound OFF';
+                }
+            }
+        };
+
         SettingsPage.prototype.toggleTheme = function () {
-            const isLightTheme = this.themeIcon.classList.contains('fa-sun');
-    
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const isLightTheme = currentTheme === 'light';
+
+            // Определяем новую тему
+            const newTheme = isLightTheme ? 'dark' : 'light';
+
+            // Устанавливаем тему
+            document.documentElement.setAttribute('data-theme', newTheme);
+
+            // Сохраняем тему в cookies
+            document.cookie = `theme=${newTheme}; path=/; max-age=31536000`;
+
+            // Обновляем иконку и текст
             if (isLightTheme) {
                 this.themeIcon.classList.remove('fa-sun');
                 this.themeIcon.classList.add('fa-moon');
@@ -75,34 +126,40 @@
                 this.themeIcon.nextElementSibling.textContent = 'Light Theme';
             }
         };
-    
+
         SettingsPage.prototype.toggleIcon = function () {
             const isSoundOn = this.soundIcon.classList.contains('fa-volume-up');
-    
+
             if (isSoundOn) {
+                // Отключаем звук
                 this.soundIcon.classList.remove('fa-volume-up');
                 this.soundIcon.classList.add('fa-volume-mute');
                 this.soundIcon.nextElementSibling.textContent = 'Sound OFF';
+                document.cookie = 'sound=off; path=/; max-age=31536000';
             } else {
+                // Включаем звук
                 this.soundIcon.classList.remove('fa-volume-mute');
                 this.soundIcon.classList.add('fa-volume-up');
                 this.soundIcon.nextElementSibling.textContent = 'Sound ON';
+                document.cookie = 'sound=on; path=/; max-age=31536000';
             }
         };
-    
-        SettingsPage.prototype.navigateBack = function() {
+
+        SettingsPage.prototype.navigateBack = function () {
             window.history.back();
         };
 
-        // TODO: saveSettings, showInfo, resetHighScore
-    
-        SettingsPage.prototype.addEventListeners = function() {
+        SettingsPage.prototype.addEventListeners = function () {
             this.themeIcon.addEventListener('click', this.toggleTheme.bind(this));
             this.soundIcon.addEventListener('click', this.toggleIcon.bind(this));
             this.backBtn.addEventListener('click', this.navigateBack);
         };
-    
-        const settingsPage = new SettingsPage();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (document.getElementById('theme-icon') && document.getElementById('sound-icon')) {
+                const settingsPage = new SettingsPage();
+            }
+        });
     </script>
 </body>
 </html>

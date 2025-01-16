@@ -6,8 +6,8 @@ export class Settings {
     floorSettings = new FloorSettings();
 }
 export class GeneralSettings {
-    updateScoreSoundUrl = "/audio/sounds/score.wav";
-    gameOverSoundUrl = "/audio/sounds/hit.wav";
+    updateScoreSoundUrl = "audio/sounds/score.wav";
+    gameOverSoundUrl = "audio/sounds/hit.wav";
 }
 export class HtmlElementSettings {
     htmlElementClassName = "";
@@ -22,14 +22,14 @@ export class PawnSettings extends HtmlElementSettings {
     gravity = 9.80665 * 75;
     jumpImpulse = 250;
     spritesUrls = [
-        "/images/birdMiddle.png",
-        "/images/birdUp.png",
-        "/images/birdDown.png"
+        "images/birdMiddle.png",
+        "images/birdUp.png",
+        "images/birdDown.png"
     ];
     maxFallRotation = 30;
     velocityForMaxFallRotation = this.jumpImpulse;
     changeSpriteInterval = 200;
-    jumpSoundUrl = "/audio/sounds/jump.wav";
+    jumpSoundUrl = "audio/sounds/jump.wav";
 }
 // HtmlElementParent must be set as Obstacle's htmlElement
 export class ObstacleTopSettings extends HtmlElementSettings {

@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Press Start 2P', cursive;
-    background: linear-gradient(80deg, #9dd6f9, #57b1e4);
+    background: var(--baby-blue-gradient);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,7 +12,7 @@ body {
 .container {
     width: 80%;
     max-width: 1200px;
-    background-color: #ffffff;
+    background-color: var(--white-color);
     border-radius: 20px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.20), 0px 5px 5px rgba(0, 0, 0, 0.10);
     padding: 20px;
@@ -47,8 +47,8 @@ h1 {
 }
 
 .settings-section {
-    background: #57b1e4; 
-    color: #ffffff;
+    color: #57b1e4;
+    border: 2px #57b1e4 solid;
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.20), 0px 5px 5px rgba(0, 0, 0, 0.10);
@@ -62,8 +62,8 @@ h1 {
 
 .settings-btn {
     padding: 20px 30px;
-    background-color: #57b1e4;
-    color: #ffffff;
+    background-color: var(--baby-blue-color);
+    color: var(--white-color);
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -82,7 +82,8 @@ input, textarea {
     margin-top: 10px;
     border-radius: 10px;
     box-sizing: border-box;
-    border: 2px solid #57b1e4;
+    border:2px #57b1e4 solid;
+    background-color: var(--white-color);
 }
 
 input:hover,
@@ -92,6 +93,11 @@ textarea:focus {
     box-shadow: 0px 5px 10px rgba(87, 177, 228, 0.5);
     border-color: #9dd6f9;
     transition: all 0.5s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #57b1e4;
 }
 
 .profile-picture {
@@ -110,7 +116,7 @@ textarea:focus {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    border: 2px solid #57b1e4;
+    border: 2px #57b1e4 solid;
     object-fit: cover;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.20), 0px 5px 5px rgba(0, 0, 0, 0.10);
 }
@@ -129,7 +135,7 @@ textarea:focus {
 }
 
 .toggle-icons i:hover {
-    color: #4593c7;
+    color: var(--baby-blue-hover);
 }
 
 #high-score span {
@@ -168,25 +174,8 @@ textarea:focus {
 }
 
 .settings-btn:hover {
-    background-color: #4593c7;
+    background-color: var(--baby-blue-hover);
     transform: translateY(-5px);
     box-shadow: 0px 10px 20px rgba(69, 147, 199, 0.5);
 }
 
-/* .settings-controls .settings-btn {
-    cursor: pointer;
-    padding: 20px 30px;
-    border-radius: 10px;
-    width: 100%; 
-    transition: all 0.3s ease;
-    background-color: #ffffff;
-    color: #57b1e4;
-    border: #57b1e4 2px solid;
-}
-
-.settings-btn:hover {
-    background-color: #57b1e4;
-    color: #ffffff;
-    transform: translateY(-5px);
-    box-shadow: 0px 10px 20px rgba(144, 208, 244, 0.5);
-} */
