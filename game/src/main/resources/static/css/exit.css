@@ -36,22 +36,30 @@ body {
 
 .button-group {
     display: flex;
-    justify-content: space-between; 
-    gap: 20px; 
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.button-wrapper {
+    flex: 1; /* Каждая кнопка занимает равное пространство */
+    display: flex; /* Центрируем содержимое внутри */
+    align-items: center;
+    justify-content: center;
 }
 
 .exit-btn {
-    flex: 1;
+    width: 100%; /* Кнопки будут одинаковой ширины */
     padding: 20px 30px;
     font-family: 'Press Start 2P', cursive;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-align: center;
 }
 
 .yes-btn {
-    background-color: #ff4d4d; 
+    background-color: #ff4d4d;
     color: #ffffff;
 }
 

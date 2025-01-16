@@ -61,6 +61,8 @@ h1 {
 }
 
 .settings-btn {
+    display: inline-block; /* Применяется и к <a>, и к <button> */
+    text-align: center; /* Центрирует текст */
     padding: 20px 30px;
     background-color: var(--baby-blue-color);
     color: var(--white-color);
@@ -68,6 +70,9 @@ h1 {
     border-radius: 10px;
     cursor: pointer;
     font-family: 'Press Start 2P', cursive;
+    text-decoration: none; /* Убирает подчёркивание у <a> */
+    font-size: 0.8rem; /* Уменьшает размер текста для консистентности */
+    transition: all 0.3s ease; /* Для плавного эффекта */
 }
 
 textarea {

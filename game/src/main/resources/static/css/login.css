@@ -149,6 +149,9 @@ button {
     font-family: 'Press Start 2P', cursive;
     background-color: #57b1e4;
     color: var(--white-color);
+    text-decoration: none; /* Убираем подчёркивание у ссылок */
+    box-sizing: border-box; /* Учитываем padding и ширину */
+    align-items: center; /* Центрируем текст и иконку */
 }
 
 .sign-in-btn:hover {
@@ -168,12 +171,15 @@ button {
     cursor: pointer;
     display: inline-block;
     transition: all 0.6s ease;
+    text-decoration: none; /* Убираем подчёркивание у ссылки */
 }
 
 .sign-up-btn span {
     display: inline-block;
     transform: translateY(0);
     transition: transform 0.6s ease;
+    text-decoration: none; /* Убираем подчёркивание у каждого span */
+    font-family: inherit;
 }
 
 .sign-up-btn:hover span {

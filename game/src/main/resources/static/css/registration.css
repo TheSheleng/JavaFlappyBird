@@ -23,6 +23,7 @@ body {
 .sign-up-btn {
     display: flex;
     justify-content: center;
+    align-items: center; /* Центрируем текст и иконку */
     width: 100%;
     max-width: 600px;
     padding: 10px;
@@ -33,6 +34,8 @@ body {
     font-family: 'Press Start 2P', cursive;
     background-color: #57b1e4;
     color: var(--white-color);
+    text-decoration: none; /* Убираем подчёркивание у ссылок */
+    box-sizing: border-box; /* Учитываем padding и ширину */
 }
 
 .container:hover {
@@ -158,12 +161,15 @@ button {
     cursor: pointer;
     display: inline-block;
     transition: all 0.6s ease;
+    text-decoration: none; /* Убираем подчёркивание у ссылки */
 }
 
 .sign-in-btn span {
     display: inline-block;
     transform: translateY(0);
     transition: transform 0.6s ease;
+    text-decoration: none;
+    font-family: inherit;
 }
 
 .sign-in-btn:hover span {

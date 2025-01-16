@@ -14,10 +14,12 @@
         <div class="box">
             <p>Are you sure you want to exit?</p>
             <div class="button-group">
-                <form action="/auth/logout" method="POST">
+                <form action="/auth/logout" method="POST" class="button-wrapper">
                     <button type="submit" class="exit-btn yes-btn" id="yes-btn">Yes</button>
                 </form>
-                <button class="exit-btn no-btn" id="no-btn">No</button>
+                <div class="button-wrapper">
+                    <button class="exit-btn no-btn" id="no-btn">No</button>
+                </div>
             </div>
         </div>
     </div>
