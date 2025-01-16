@@ -19,6 +19,9 @@ export class Pawn extends GameObject {
         this.maxFallRotation = settings.maxFallRotation;
         this.velocityForMaxFallRotation = settings.velocityForMaxFallRotation;
 
+        // Create an audio element for the jump sound
+        this.jumpSound = new Audio(settings.jumpSoundUrl);
+
         window.addEventListener("mousedown", () => this.addImpulse());
     }
 
@@ -69,6 +72,8 @@ export class Pawn extends GameObject {
 
     private addImpulse(): void {
         this.velocity = this.jumpImpulse;
+
+        this.game.playSound(this.jumpSound);
     }
 
     private readonly spritesUrls: Array<string>;
@@ -78,4 +83,6 @@ export class Pawn extends GameObject {
 
     private readonly maxFallRotation: number = 0;
     private readonly velocityForMaxFallRotation: number = 0;
+
+    private readonly jumpSound: HTMLAudioElement;
 }

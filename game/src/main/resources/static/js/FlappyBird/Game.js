@@ -44,6 +44,9 @@ export class Game {
         }
         // Start the tick after all objects have been created
         this._requestAnimationFrameId = requestAnimationFrame(this.tickCallback);
+        // Create audio elements
+        this._updateScoreSound = new Audio(settings.generalSettings.updateScoreSoundUrl);
+        this._gameOverSound = new Audio(settings.generalSettings.gameOverSoundUrl);
         document.addEventListener("visibilitychange", () => {
             if (document.visibilityState === "hidden") {
                 this.pause();
@@ -66,16 +69,24 @@ export class Game {
         return this._floor;
     }
     onTick = new MulticastDelegate();
+    playSound(sound) {
+        // Don't play the sound if the game is paused
+        if (this.isPaused) {
+            return;
+        }
+        // Reset the sound to the beginning in case it's already playing
+        sound.currentTime = 0;
+        // Play the sound. then function is used here only to avoid the warning.
+        sound.play().then();
+    }
     endPlay() {
+        this.playSound(this._gameOverSound);
         this.pause();
+        this._isGameEnded = true;
         this.sendScore();
         const currentScore = this._score;
         const bestScore = Math.max(this._score, this.getBestScore());
         this.gameOverModal.show(currentScore, bestScore);
-    }
-    getBestScore() {
-        // TODO: Connect to a database to get the best score
-        return 1000; // Temporary placeholder value
     }
     get score() {
         return this._score;
@@ -85,6 +96,7 @@ export class Game {
     }
     updateScore() {
         ++this._score;
+        this.playSound(this._updateScoreSound);
         const scoreDisplay = document.getElementById('score-display');
         if (scoreDisplay) {
             scoreDisplay.textContent = this._score.toString();
@@ -107,6 +119,10 @@ export class Game {
         this._isPaused = true;
     }
     resume() {
+        // Don't resume the game if it has ended
+        if (this._isGameEnded) {
+            return;
+        }
         this._isPaused = false;
         this.lastFrameTime = performance.now();
         this._requestAnimationFrameId = requestAnimationFrame(this.tickCallback);
@@ -117,7 +133,14 @@ export class Game {
     _obstacles = [];
     _floor;
     _requestAnimationFrameId;
+    _updateScoreSound;
+    _gameOverSound;
     _isPaused = false;
+    _isGameEnded = false;
+    getBestScore() {
+        // TODO: Connect to a database to get the best score
+        return 1000; // Temporary placeholder value
+    }
     sendScore() {
         // TODO: Implement sending the score to the server
     }

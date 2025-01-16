@@ -11,6 +11,8 @@ export class Pawn extends GameObject {
         setInterval(() => this.nextSprite(), this.changeSpriteInterval);
         this.maxFallRotation = settings.maxFallRotation;
         this.velocityForMaxFallRotation = settings.velocityForMaxFallRotation;
+        // Create an audio element for the jump sound
+        this.jumpSound = new Audio(settings.jumpSoundUrl);
         window.addEventListener("mousedown", () => this.addImpulse());
     }
     tick(deltaTime) {
@@ -50,10 +52,12 @@ export class Pawn extends GameObject {
     jumpImpulse;
     addImpulse() {
         this.velocity = this.jumpImpulse;
+        this.game.playSound(this.jumpSound);
     }
     spritesUrls;
     changeSpriteInterval;
     currentSpriteIndex = 0;
     maxFallRotation = 0;
     velocityForMaxFallRotation = 0;
+    jumpSound;
 }

@@ -1,8 +1,13 @@
 import { Vector2D } from "./SimpleTypes.js";
 export class Settings {
+    generalSettings = new GeneralSettings();
     pawnSettings = new PawnSettings();
     obstaclesSettings = new ObstaclesSettings();
     floorSettings = new FloorSettings();
+}
+export class GeneralSettings {
+    updateScoreSoundUrl = "/audio/sounds/score.wav";
+    gameOverSoundUrl = "/audio/sounds/hit.wav";
 }
 export class HtmlElementSettings {
     htmlElementClassName = "";
@@ -24,6 +29,7 @@ export class PawnSettings extends HtmlElementSettings {
     maxFallRotation = 30;
     velocityForMaxFallRotation = this.jumpImpulse;
     changeSpriteInterval = 200;
+    jumpSoundUrl = "/audio/sounds/jump.wav";
 }
 // HtmlElementParent must be set as Obstacle's htmlElement
 export class ObstacleTopSettings extends HtmlElementSettings {
