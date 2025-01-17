@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/page404.css">
+</head>
+<body>
+<div class="container">
+    <p th:text="${title}"></p>
+    <p th:text="${message}"></p>
+    <button onclick="window.location.href='menu';">Return to the Main</button>
+</div>
+</body>
+</html>

@@ -14,7 +14,8 @@ public class CustomErrorController implements ErrorController {
     @RequestMapping("/error")
     public String handleError(Model model, HttpServletRequest request) {
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-        String errorMessage = "Unknown error";
+        Object errorMessage = request.getAttribute(RequestDispatcher.ERROR_MESSAGE);
+        String errorTitle = "Unknown error";
 
         if (status != null) {
             int statusCode = Integer.parseInt(status.toString());
@@ -37,13 +38,14 @@ public class CustomErrorController implements ErrorController {
                     return "redirect:/auth/login";
                 }
 
-                errorMessage = "Page not found (404)";
+                errorTitle = "Page not found (404)";
             } else if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
-                errorMessage = "Internal server error (500)";
+                errorTitle = "Internal server error (500)";
             }
         }
 
         model.addAttribute("errorMessage", errorMessage);
+        model.addAttribute("errorTitle", errorTitle);
         return "error";
     }
 }

@@ -2,9 +2,9 @@ package com.javaflappybird.game.component;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
 
 public class CookieUtil {
-
     public static void setJwtCookie(String token, HttpServletResponse response) {
         Cookie cookie = new Cookie("token", token);
         cookie.setHttpOnly(true);       // The token is only accessible via HTTP, not via JavaScript.

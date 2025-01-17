@@ -57,7 +57,7 @@ body {
     height: 35px;
     left: 0;
     bottom: 250px;
-    background: url('../images/birdMiddle.png') no-repeat center / contain;
+    background: url('/images/birdMiddle.png') no-repeat center / contain;
 }
 
 @keyframes flap {
