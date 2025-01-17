@@ -8,7 +8,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Setter
 public class SettingsUpdateRequest {
     private MultipartFile avatar;
-    private String newPassword;
     private String username;
     private String description;
 }

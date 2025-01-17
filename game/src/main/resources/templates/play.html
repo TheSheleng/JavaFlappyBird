@@ -6,8 +6,8 @@
     <title>Game</title>
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/theme.css">
-    <link rel="stylesheet" href="css/play.css">
+    <link rel="stylesheet" href="/css/theme.css">
+    <link rel="stylesheet" href="/css/play.css">
 </head>
 <body>
     <div class="score-display" id="score-display">0</div>
@@ -16,14 +16,14 @@
         <div class="box">
             <h2>Game Over</h2>
             <p>Your Score: <span id="current-score">0</span></p>
-            <p>Best Score: <span id="best-score">0</span></p>
+            <p style="display: none;">Best Score: <span id="best-score">0</span></p>
             <div class="button-group">
                 <button class="btn restart-btn" id="restart-button">Restart</button>
                 <a href="/menu" class="btn menu-btn" id="menu-button">Main Menu</a>
             </div>
         </div>
     </div>
-    <script type="module" src="js/memory.js"></script>
-    <script type="module" src="js/FlappyBird/Game.js"></script>
+    <script type="module" src="/js/memory.js"></script>
+    <script type="module" src="/js/FlappyBird/Game.js"></script>
 </body>
 </html>

@@ -1,30 +1,16 @@
 "use strict";
 // Загружаем тему из cookies
-function loadThemeFromCookies() {
-    const themeCookie = document.cookie.split('; ').find((row) => row.startsWith('theme='));
-    const savedTheme = themeCookie ? themeCookie.split('=')[1] : 'light';
+function loadTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
 }
 // Загружаем состояние звука из cookies
-function loadSoundFromCookies() {
-    const soundCookie = document.cookie.split('; ').find((row) => row.startsWith('sound='));
-    const isSoundEnabled = soundCookie ? soundCookie.split('=')[1] === 'on' : true;
-    const soundIcon = document.getElementById('sound-icon');
-    if (soundIcon) {
-        if (isSoundEnabled) {
-            soundIcon.classList.remove('fa-volume-mute');
-            soundIcon.classList.add('fa-volume-up');
-            soundIcon.nextElementSibling && (soundIcon.nextElementSibling.textContent = 'Sound ON');
-        }
-        else {
-            soundIcon.classList.remove('fa-volume-up');
-            soundIcon.classList.add('fa-volume-mute');
-            soundIcon.nextElementSibling && (soundIcon.nextElementSibling.textContent = 'Sound OFF');
-        }
-    }
+function loadSound() {
+    const isSoundEnabled = localStorage.getItem('sound') === 'on';
+    console.log(isSoundEnabled);
 }
 // Запускаем загрузку настроек при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
-    loadThemeFromCookies();
-    loadSoundFromCookies();
+    loadTheme();
+    loadSound();
 });

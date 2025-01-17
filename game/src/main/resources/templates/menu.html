@@ -7,8 +7,8 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/theme.css">
-    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="/css/theme.css">
+    <link rel="stylesheet" href="/css/menu.css">
 </head>
 <body>
     <div class="container">
@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <script type="module" src="js/memory.js"></script>
+    <script type="module" src="/js/memory.js"></script>
     <script>
         function MenuPage() {
             this.playBtn = document.getElementById('play-btn');
@@ -43,7 +43,7 @@
         };
         
         MenuPage.prototype.navigateToSettings = function() {
-            window.location.href = 'settings';
+            window.location.href = 'settings/';
         };
         
         MenuPage.prototype.navigateToAbout = function() {

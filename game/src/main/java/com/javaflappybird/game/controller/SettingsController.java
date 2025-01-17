@@ -1,12 +1,15 @@
 package com.javaflappybird.game.controller;
 
 import com.javaflappybird.game.CurrentUser;
+import com.javaflappybird.game.component.CookieUtil;
+import com.javaflappybird.game.component.JwtUtil;
 import com.javaflappybird.game.dto.SettingsUpdateRequest;
 import com.javaflappybird.game.model.PasswordResetToken;
 import com.javaflappybird.game.model.User;
 import com.javaflappybird.game.repository.PasswordResetTokenRepository;
 import com.javaflappybird.game.repository.UserRepository;
 import com.javaflappybird.game.service.PasswordResetService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
@@ -15,19 +18,23 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/settings")
 public class SettingsController {
+
+    @Autowired
+    private JwtUtil jwtUtil;
 
     @Autowired
     private PasswordResetService passwordResetService;
@@ -46,13 +53,86 @@ public class SettingsController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @PostMapping("/update")
-    public String updateSettings(
-            @ModelAttribute SettingsUpdateRequest updateRequest,
+    @GetMapping("/")
+    public String settings(
+            @CurrentUser User user,
             Model model
     ) {
+        model.addAttribute("avatarUrl", user.getAvatarUrl());
+        return "settings";
+    }
+
+    @PostMapping("/update")
+    public String updateSettings(
+            @CurrentUser User user,
+            @ModelAttribute SettingsUpdateRequest updateRequest,
+            HttpServletResponse response,
+            Model model
+    ) {
+        String[] allowedExtensions = {"jpg", "jpeg", "png"};
+
+        String originalFileName = updateRequest.getAvatar().getOriginalFilename();
+
+        if (originalFileName != null && !originalFileName.isEmpty()) {
+            String fileExtension = getFileExtension(originalFileName).toLowerCase();
+
+            // Check if the file extension is allowed
+            if (!isValidFileExtension(fileExtension, allowedExtensions)) {
+                model.addAttribute("error", "Invalid file format. Supported formats: jpg, jpeg, png.");
+                return "settings/";
+            }
+        }
+
+        // Processing the uploaded file
+        if (updateRequest.getAvatar() != null && !updateRequest.getAvatar().isEmpty()) {
+            try {
+                String uniqueFileName = generateUniqueFileName(originalFileName);
+
+                Path path = Paths.get("uploads/avatars/" + uniqueFileName);
+
+                Files.write(path, updateRequest.getAvatar().getBytes());
+
+                // Save the file path in the model or database
+                user.setAvatarUrl(path.toString());
+            } catch (IOException e) {
+                model.addAttribute("error", "Error loading file.");
+                return "settings/";
+            }
+        }
+
+        if (updateRequest.getUsername() != null && !updateRequest.getUsername().isEmpty()) {
+            user.setUsername(updateRequest.getUsername());
+        }
+        if (updateRequest.getDescription() != null && !updateRequest.getDescription().isEmpty()) {
+            user.setDescription(updateRequest.getDescription());
+        }
+
+        userRepository.save(user);
+
+        String token = jwtUtil.generateToken(user.getUsername());
+        CookieUtil.setJwtCookie(token, response);
 
         return "redirect:/menu";
+    }
+
+    private String getFileExtension(String fileName) {
+        int dotIndex = fileName.lastIndexOf(".");
+        return dotIndex != -1 ? fileName.substring(dotIndex + 1) : "";
+    }
+
+    private boolean isValidFileExtension(String fileExtension, String[] allowedExtensions) {
+        for (String allowed : allowedExtensions) {
+            if (allowed.equals(fileExtension)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private String generateUniqueFileName(String originalFileName) {
+        String extension = getFileExtension(originalFileName);
+        String uniqueName = UUID.randomUUID().toString();
+        return uniqueName + "." + extension;
     }
 
     @PostMapping("/newPasswordRequest")

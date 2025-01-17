@@ -30,7 +30,6 @@ public class HomeController {
         return "info";
     }
 
-
     @GetMapping("/menu")
     public String menu() {
         return "menu";
@@ -44,11 +43,6 @@ public class HomeController {
     @GetMapping("/leaderboard")
     public String leaderboard() {
         return "leaderboard";
-    }
-
-    @GetMapping("/settings")
-    public String settings() {
-        return "settings";
     }
 
     @GetMapping("/about")

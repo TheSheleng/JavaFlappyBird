@@ -7,8 +7,8 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/theme.css">
-    <link rel="stylesheet" href="css/settings.css">
+    <link rel="stylesheet" href="/css/theme.css">
+    <link rel="stylesheet" href="/css/settings.css">
 </head>
 <body>
     <div class="container">
@@ -34,32 +34,30 @@
                 <div class="settings-section full-height">
                     <h2>Extra Settings</h2>
                     <div class="toggle-icons">
-                        <label class="toggle-item">
-                            <input type="checkbox" id="isThemeOn">
+                        <div class="toggle-item">
                             <i id="theme-icon" class="fas fa-sun active"></i>
                             <span>Light Theme</span>
-                        </label>
-                        <label class="toggle-item">
-                            <input type="checkbox" id="isSoundOn">
+                        </div>
+                        <div class="toggle-item">
                             <i id="sound-icon" class="fas fa-volume-up active"></i>
                             <span>Sound ON</span>
-                        </label >
+                        </div >
                     </div>
                 </div>
                 <div class="settings-section">
                     <h2>Description</h2>
-                    <textarea id="description" placeholder="Current description"></textarea>
+                    <textarea id="description" name="description" placeholder="Current description"></textarea>
                 </div>
             </div>
             <div class="settings-controls">
                 <a href="/menu" class="settings-btn back-btn">Back</a>
-                <button class="settings-btn save-btn" type="submit" onclick="saveCheckboxSettings()">Save</button>
+                <button class="settings-btn save-btn" type="submit">Save</button>
             </div>
 
         </form>
     </div>
 
-    <script type="module" src="js/memory.js"></script>
+    <script type="module" src="/js/memory.js"></script>
     <script>
         function SettingsPage() {
             this.themeIcon = document.getElementById('theme-icon');
@@ -73,9 +71,8 @@
         }
 
         SettingsPage.prototype.syncUI = function () {
-            // Загружаем тему
-            const themeCookie = document.cookie.split('; ').find((row) => row.startsWith('theme='));
-            const savedTheme = themeCookie ? themeCookie.split('=')[1] : 'light';
+            // Загружаем тему из localStorage
+            const savedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
 
             if (this.themeIcon) {
@@ -90,9 +87,8 @@
                 }
             }
 
-            // Загружаем звук
-            const soundCookie = document.cookie.split('; ').find((row) => row.startsWith('sound='));
-            const isSoundEnabled = soundCookie ? soundCookie.split('=')[1] === 'on' : true;
+            // Загружаем звук из localStorage
+            const isSoundEnabled = localStorage.getItem('sound') === 'on';
 
             if (this.soundIcon) {
                 if (isSoundEnabled) {
@@ -117,8 +113,8 @@
             // Устанавливаем тему
             document.documentElement.setAttribute('data-theme', newTheme);
 
-            // Сохраняем тему в cookies
-            document.cookie = `theme=${newTheme}; path=/; max-age=31536000`;
+            // Сохраняем тему в localStorage
+            localStorage.setItem('theme', newTheme);
 
             // Обновляем иконку и текст
             if (isLightTheme) {
@@ -140,13 +136,13 @@
                 this.soundIcon.classList.remove('fa-volume-up');
                 this.soundIcon.classList.add('fa-volume-mute');
                 this.soundIcon.nextElementSibling.textContent = 'Sound OFF';
-                document.cookie = 'sound=off; path=/; max-age=31536000';
+                localStorage.setItem('sound', 'off');
             } else {
                 // Включаем звук
                 this.soundIcon.classList.remove('fa-volume-mute');
                 this.soundIcon.classList.add('fa-volume-up');
                 this.soundIcon.nextElementSibling.textContent = 'Sound ON';
-                document.cookie = 'sound=on; path=/; max-age=31536000';
+                localStorage.setItem('sound', 'on');
             }
         };
 
@@ -165,23 +161,6 @@
                 const settingsPage = new SettingsPage();
             }
         });
-
-        function saveCheckboxSettings() {
-            const isSoundOn = document.getElementById('isSoundOn').checked;
-            const isThemeOn = document.getElementById('isThemeOn').checked;
-
-            localStorage.setItem('isSoundOn', isSoundOn);
-            localStorage.setItem('isThemeOn', isThemeOn);
-        }
-
-        function loadCheckboxSettings() {
-            const isSoundOn = localStorage.getItem('isSoundOn') === 'true';
-            const isThemeOn = localStorage.getItem('isThemeOn') === 'true';
-
-            document.getElementById('isSoundOn').checked = isSoundOn;
-            document.getElementById('isThemeOn').checked = isThemeOn;
-        }
-        document.addEventListener('DOMContentLoaded', loadCheckboxSettings);
 
         function sendEmailForNewPassword() {
             fetch(`http://localhost:8080/settings/newPasswordRequest`, {
