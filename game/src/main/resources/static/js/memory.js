@@ -7,7 +7,10 @@ function loadTheme() {
 // Загружаем состояние звука из cookies
 function loadSound() {
     const isSoundEnabled = localStorage.getItem('sound') === 'on';
-    console.log(isSoundEnabled);
+    if (isSoundEnabled) {
+    }
+    else {
+    }
 }
 // Запускаем загрузку настроек при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {

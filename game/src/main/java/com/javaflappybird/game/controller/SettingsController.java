@@ -42,8 +42,6 @@ public class SettingsController {
     @Autowired
     private PasswordResetTokenRepository passwordResetTokenRepository;
 
-    private static final String UPLOAD_DIR = "uploads/";
-
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -59,6 +57,8 @@ public class SettingsController {
             Model model
     ) {
         model.addAttribute("avatarUrl", user.getAvatarUrl());
+        model.addAttribute("username", user.getUsername());
+        model.addAttribute("description", user.getDescription());
         return "settings";
     }
 
@@ -137,8 +137,7 @@ public class SettingsController {
 
     @PostMapping("/newPasswordRequest")
     public String newPasswordRequest(
-            @CurrentUser User user,
-            RedirectAttributes redirectAttributes
+            @CurrentUser User user
     ) {
         passwordResetService.sendPasswordResetEmail(user.getEmail());
 

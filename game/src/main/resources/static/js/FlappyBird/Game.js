@@ -144,7 +144,14 @@ export class Game {
         return 1000; // Temporary placeholder value
     }
     sendScore() {
-        // TODO: Implement sending the score to the server
+        const score = this._score;
+        fetch("http://localhost:8080/api/game/sendScore", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(score),
+        });
     }
 }
 new Game(new Settings());

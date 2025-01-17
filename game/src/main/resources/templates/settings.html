@@ -20,7 +20,7 @@
                     <h2>Profile Picture</h2>
                     <div class="profile-picture">
                         <input type="file" id="avatar" name="avatar" accept="image/jpeg,image/png">
-                        <img src="/images/default-avatar.png" alt="Profile Picture" id="profile-picture">
+                        <img th:src="${avatarUrl != null ? '/' + avatarUrl : '/images/default-avatar.png'}" alt="Profile Picture" id="profile-picture">
                     </div>
                 </div>
                 <div class="settings-section">
@@ -29,7 +29,7 @@
                 </div>
                 <div class="settings-section">
                     <h2>Name</h2>
-                    <input type="text" id="username" name="username" placeholder="Current username">
+                    <input type="text" id="username" name="username" th:placeholder="${username}">
                 </div>
                 <div class="settings-section full-height">
                     <h2>Extra Settings</h2>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="settings-section">
                     <h2>Description</h2>
-                    <textarea id="description" name="description" placeholder="Current description"></textarea>
+                    <textarea id="description" name="description" th:placeholder="${description}"></textarea>
                 </div>
             </div>
             <div class="settings-controls">
